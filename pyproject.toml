@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "сounter-per-child"
+version = "0.1.0"
+description = ""
+authors = ["Anton Gromov <seed14112@yaandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.2.4"
+python-dotenv = "^1.1.1"
+psycopg2-binary = "^2.9.10"
+pillow = "^11.3.0"
+channels = "^4.3.0"
+uvicorn = "^0.35.0"
+channels-redis = "^4.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
