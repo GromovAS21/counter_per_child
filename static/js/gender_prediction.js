@@ -14,23 +14,20 @@ function createFloatingElements() {
     container.innerHTML = '';
 
     // Увеличиваем количество элементов для более частого падения
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 40; i++) {
         const element = document.createElement('div');
         element.className = 'floating-element';
 
         // Размер и позиция
         const size = Math.random() * 30 + 20;
         const startX = Math.random() * 100;
-        const startY = -size; // Начинаем прямо над видимой областью
+        const startY = -size;
 
         // Параметры анимации
-        const duration = Math.random() * 15 + 10; // Быстрее падение
-        const delay = Math.random() * 5; // Меньшая задержка
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
         const rotation = Math.random() * 360;
         const color = colors[Math.floor(Math.random() * colors.length)];
-
-        // Тип движения (добавим больше вариантов)
-        const movementType = Math.floor(Math.random() * 6);
 
         // Настройка элемента
         element.style.width = `${size}px`;
@@ -39,7 +36,7 @@ function createFloatingElements() {
         element.style.top = `${startY}px`;
         element.style.animation = `fall-animation ${duration}s linear ${delay}s infinite`;
         element.style.setProperty('--start-x', `${startX}vw`);
-        element.style.setProperty('--end-x', `${getEndX(movementType, startX)}vw`);
+        element.style.setProperty('--end-x', `${getEndX(startX)}vw`);
         element.style.setProperty('--rotation', `${rotation}deg`);
         element.style.transform = `rotate(${rotation}deg)`;
         element.style.willChange = 'transform, opacity';
@@ -72,22 +69,15 @@ function createFloatingElements() {
 }
 
 // Функция для определения конечной позиции по X
-function getEndX(movementType, startX) {
+function getEndX(startX) {
+    const movementType = Math.floor(Math.random() * 6);
     switch (movementType) {
-        case 0:
-            return startX + Math.random() * 20; // Легкий сдвиг вправо
-        case 1:
-            return startX - Math.random() * 20; // Легкий сдвиг влево
-        case 2:
-            return startX + (Math.random() * 40 - 20); // Случайный сдвиг
-        case 3:
-            return startX + Math.sin(startX / 10) * 30; // Волнообразное движение
-        case 4:
-            return startX + (Math.random() > 0.5 ? 1 : -1) * 25; // Диагональ
-        case 5:
-            return startX; // Прямо вниз
-        default:
-            return startX;
+        case 0: return startX + Math.random() * 20;
+        case 1: return startX - Math.random() * 20;
+        case 2: return startX + (Math.random() * 40 - 20);
+        case 3: return startX + Math.sin(startX / 10) * 30;
+        case 4: return startX + (Math.random() > 0.5 ? 1 : -1) * 25;
+        default: return startX;
     }
 }
 
@@ -123,43 +113,37 @@ style.innerHTML = `
 `;
 document.head.appendChild(style);
 
-// Остальные функции без изменений
-function highlightCardWithHigherTotal() {
-    const girlCard = document.getElementById('girlCard');
-    const boyCard = document.getElementById('boyCard');
-    girlCard.classList.remove('highlight-card');
-    boyCard.classList.remove('highlight-card');
+// Функция для анимации изменения числа с цветом
+function animateNumberChange(elementId, newValue, isIncrease) {
+    const element = document.getElementById(elementId);
+    const startValue = parseInt(element.textContent) || 0;
+    const duration = 500;
+    const startTime = performance.now();
 
-    const girlCardTotal = parseFloat(document.getElementById('girlCardTotal').innerText.replace(/[^0-9.-]/g, ''));
-    const boyCardTotal = parseFloat(document.getElementById('boyCardTotal').innerText.replace(/[^0-9.-]/g, ''));
+    // Устанавливаем начальный цвет
+    element.style.color = isIncrease ? '#4CAF50' : '#F44336';
 
-    if (girlCardTotal > boyCardTotal) {
-        girlCard.classList.add('highlight-card');
-    } else if (boyCardTotal > girlCardTotal) {
-        boyCard.classList.add('highlight-card');
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const currentValue = Math.floor(startValue + (newValue - startValue) * progress);
+
+        element.textContent = currentValue;
+
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        } else {
+            // Возвращаем обычный цвет через небольшой промежуток времени
+            setTimeout(() => {
+                element.style.color = '';
+            }, 300);
+        }
     }
+
+    requestAnimationFrame(update);
 }
 
 document.addEventListener('DOMContentLoaded', function () {
     createFloatingElements();
-    highlightCardWithHigherTotal();
+    updateLeadingCard();
 });
-
-// Инициализация плавающих элементов
-
-function initFloatingElements() {
-    const container = document.getElementById('floating-elements');
-    const elements = ['🧸', '🍼', '👚', '👕', '?', '？'];
-
-    for (let i = 0; i < 40; i++) {
-        const el = document.createElement('div');
-        el.className = 'floating-element';
-        el.textContent = elements[Math.floor(Math.random() * elements.length)];
-        el.style.setProperty('--delay', Math.random() * 5 + 's');
-        el.style.setProperty('--duration', Math.random() * 15 + 10 + 's');
-        el.style.setProperty('--start-x', Math.random() * 100 + 'vw');
-        container.appendChild(el);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', initFloatingElements);

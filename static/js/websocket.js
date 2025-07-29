@@ -9,15 +9,15 @@ function updateLeadingCard() {
     const girlCard = document.getElementById('girlCard');
     const boyCard = document.getElementById('boyCard');
 
-    // Убираем подсветку с обеих карточек
-    girlCard.classList.remove('leading-card');
-    boyCard.classList.remove('leading-card');
+    // Убираем подсветку и пульсацию с обеих карточек
+    girlCard.classList.remove('leading-card', 'pulsing-card');
+    boyCard.classList.remove('leading-card', 'pulsing-card');
 
-    // Добавляем подсветку к карточке с большей суммой
+    // Добавляем эффекты к карточке с большей суммой
     if (girlTotal > boyTotal) {
-        girlCard.classList.add('leading-card');
+        girlCard.classList.add('leading-card', 'pulsing-card');
     } else if (boyTotal > girlTotal) {
-        boyCard.classList.add('leading-card');
+        boyCard.classList.add('leading-card', 'pulsing-card');
     }
 }
 
@@ -27,27 +27,32 @@ genderSocket.onmessage = function(e) {
     const isBoy = data.name === "Мальчик";
     const totalElementId = isBoy ? 'boyCardTotal' : 'girlCardTotal';
     const cardId = isBoy ? 'boyCard' : 'girlCard';
+    const currentValue = parseInt(document.getElementById(totalElementId).textContent) || 0;
+    const isIncrease = data.total > currentValue;
 
     // Анимация изменения числа
-    animateNumberChange(totalElementId, data.total, function() {
-        // После завершения анимации обновляем подсветку
+    animateNumberChange(totalElementId, data.total, isIncrease, function() {
+        // Обновляем лидирующую карточку
         updateLeadingCard();
 
-        // Добавляем эффект пульсации к обновленной карточке
+        // Кратковременная пульсация обновленной карточки
         const card = document.getElementById(cardId);
         card.classList.add('updated-pulse');
         setTimeout(() => {
             card.classList.remove('updated-pulse');
-        }, 1000);
+        }, 500);
     });
 };
 
-// Функция анимации числа
-function animateNumberChange(elementId, newValue, callback) {
+// Функция анимации числа с цветом
+function animateNumberChange(elementId, newValue, isIncrease, callback) {
     const element = document.getElementById(elementId);
     const startValue = parseInt(element.textContent) || 0;
     const duration = 500;
     const startTime = performance.now();
+
+    // Устанавливаем цвет в зависимости от изменения
+    element.classList.add(isIncrease ? 'increasing' : 'decreasing');
 
     function update(currentTime) {
         const elapsed = currentTime - startTime;
@@ -58,8 +63,12 @@ function animateNumberChange(elementId, newValue, callback) {
 
         if (progress < 1) {
             requestAnimationFrame(update);
-        } else if (callback) {
-            callback();
+        } else {
+            // Убираем классы цвета через небольшой промежуток времени
+            setTimeout(() => {
+                element.classList.remove('increasing', 'decreasing');
+                if (callback) callback();
+            }, 300);
         }
     }
 
