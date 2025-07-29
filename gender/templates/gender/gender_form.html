@@ -181,7 +181,6 @@
 
                         <!-- Поле для суммы -->
                         <div class="form-group">
-                            <label for="{{ form.total.id_for_label }}" class="form-label">Сумма в банк</label>
                             <input type="number" name="{{ form.total.name }}" id="{{ form.total.id_for_label }}"
                                    class="form-control" placeholder="Введите общую сумму"
                                    value="{{ form.total.value|default_if_none:'' }}">
