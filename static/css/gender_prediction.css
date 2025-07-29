@@ -1,104 +1,48 @@
-/* Добавляем новые стили для фоновых элементов */
-.floating-element {
-    position: fixed;
-    z-index: 0;
-    opacity: 0;
-    will-change: transform;
-    pointer-events: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/* gender_prediction.css */
 
-/* Примеры базовых анимаций (если не используете динамические) */
-@keyframes fall-right {
-    0% {
-        transform: translate(var(--start-x, 0), -20vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.7;
-    }
-    90% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translate(calc(var(--start-x, 0) + 30vw), 100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes fall-left {
-    0% {
-        transform: translate(var(--start-x, 100vw), -20vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.7;
-    }
-    90% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translate(calc(var(--start-x, 100vw) - 30vw), 100vh) rotate(-360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes fall-diagonal {
-    0% {
-        transform: translate(var(--start-x, 50vw), -20vh) rotate(0deg);
-        opacity: 0;
-    }
-    100% {
-        transform: translate(calc(var(--start-x, 50vw) + 40vw), 100vh) rotate(180deg);
-        opacity: 0;
-    }
-}
-
-@keyframes fall-zigzag {
-    0%, 100% {
-        transform: translate(var(--start-x, 50vw), -20vh) rotate(0deg);
-        opacity: 0;
-    }
-    25% {
-        transform: translate(calc(var(--start-x, 50vw) + 15vw), 30vh) rotate(90deg);
-    }
-    50% {
-        transform: translate(calc(var(--start-x, 50vw) - 15vw), 60vh) rotate(180deg);
-    }
-    75% {
-        transform: translate(calc(var(--start-x, 50vw) + 10vw), 80vh) rotate(270deg);
-    }
-    10%, 90% {
-        opacity: 0.7;
-    }
-}
-
-@keyframes floating-elements {
-    0% {
-        transform: translate(0, -10vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.7;
-    }
-    90% {
-        opacity: 0.7;
-    }
-    100% {
-        transform: translate(calc(-50vw + 100px * var(--x-offset)), 100vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-/* Остальные стили остаются без изменений */
+/* Основные стили */
 body {
     font-family: 'Comfortaa', cursive;
     background: linear-gradient(135deg, #fff5f5 0%, #e3f2fd 100%);
     min-height: 100vh;
     overflow-x: hidden;
     position: relative;
+}
+
+/* Контейнер */
+.centered-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок */
+.header-title {
+    margin-bottom: 3rem;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 3.5rem;
+    animation: colorChange 8s infinite alternate;
+}
+
+/* Карточки */
+.card {
+    border-radius: 20px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
 }
 
 .clickable-card {
@@ -111,44 +55,7 @@ body {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
 }
 
-.centered-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem 0;
-    position: relative;
-    z-index: 1;
-}
-
-.header-title {
-    margin-bottom: 3rem;
-    text-align: center;
-    font-family: 'Pacifico', cursive;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 3.5rem;
-    animation: colorChange 8s infinite alternate;
-}
-
-.card {
-    border-radius: 20px !important;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border: none;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-}
-
+/* Цвета карточек */
 .girl-card {
     background: linear-gradient(135deg, rgba(255, 205, 210, 0.6) 0%, rgba(248, 187, 208, 0.6) 100%) !important;
 }
@@ -157,6 +64,7 @@ body {
     background: linear-gradient(135deg, rgba(187, 222, 251, 0.6) 0%, rgba(144, 202, 249, 0.6) 100%) !important;
 }
 
+/* Заголовок карточки */
 .card-header {
     border-bottom: none !important;
     font-weight: 700;
@@ -190,6 +98,7 @@ body {
     color: #2196f3;
 }
 
+/* Тело карточки */
 .card-body {
     padding: 1.5rem 2rem 2rem;
     display: flex;
@@ -209,6 +118,7 @@ body {
     flex-shrink: 0;
 }
 
+/* Изображения */
 .img-wrapper {
     width: 100%;
     display: flex;
@@ -250,6 +160,7 @@ body {
     filter: brightness(1.05) saturate(1.1);
 }
 
+/* Футер */
 footer {
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(5px);
@@ -257,18 +168,67 @@ footer {
     margin-top: 3rem;
 }
 
-@keyframes pulse {
-    0% {
+/* Анимации для WebSocket */
+
+/* Стиль для карточки с большей суммой */
+.leading-card {
+    border: 3px solid #FFD700 !important;
+    animation: gold-pulse 3s infinite ease-in-out, gold-glow 2s infinite alternate;
+}
+
+@keyframes gold-pulse {
+    0%, 100% {
         transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
     }
     50% {
-        transform: scale(1.03);
-    }
-    100% {
-        transform: scale(1);
+        transform: scale(1.02);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
     }
 }
 
+@keyframes gold-glow {
+    from {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+    }
+}
+
+/* Анимация чисел при изменении */
+@keyframes numberIncrease {
+    0% { transform: scale(1); color: inherit; }
+    50% { transform: scale(1.2); color: #4CAF50; }
+    100% { transform: scale(1); color: inherit; }
+}
+
+@keyframes numberDecrease {
+    0% { transform: scale(1); color: inherit; }
+    50% { transform: scale(0.8); color: #F44336; }
+    100% { transform: scale(1); color: inherit; }
+}
+
+.increasing {
+    animation: numberIncrease 0.5s ease-out;
+}
+
+.decreasing {
+    animation: numberDecrease 0.5s ease-out;
+}
+
+/* Анимация пульсации при обновлении */
+.updated-pulse {
+    animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Цвета заголовка */
 @keyframes colorChange {
     0% {
         color: #e91e63;
@@ -287,46 +247,7 @@ footer {
     }
 }
 
-.gender-label {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
-
-.girl-label {
-    color: #e91e63;
-}
-
-.boy-label {
-    color: #2196f3;
-}
-
-.highlight-card {
-    animation: highlight 2s infinite alternate;
-    border: 3px solid gold;
-}
-
-@keyframes highlight {
-    0% {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        transform: scale(1);
-    }
-    50% {
-        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
-        transform: scale(1.02);
-    }
-    100% {
-        box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-        transform: scale(1);
-    }
-}
-
+/* Адаптивность */
 @media (max-width: 768px) {
     .header-title {
         font-size: 2.5rem;
@@ -347,5 +268,33 @@ footer {
 
     .img-container img {
         max-height: 300px;
+    }
+}
+
+/* Плавающие элементы */
+.floating-element {
+    position: fixed;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    animation-timing-function: linear;
+}
+
+@keyframes fall-animation {
+    0% {
+        transform: translate(var(--start-x), -50px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--end-x), calc(100vh + 50px)) rotate(var(--rotation));
+        opacity: 0;
     }
 }

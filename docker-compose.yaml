@@ -26,6 +26,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
     volumes:
       - .:/app
       - ./static_collected:/app/static_collected
@@ -35,7 +37,7 @@ services:
     command: >
       sh -c 'python manage.py migrate &&
              python manage.py collectstatic --no-input &&
-             python manage.py loaddata main.json &&
+             python manage.py loaddata gender.json &&
              python manage.py csu &&
              uvicorn config.asgi:application --host 0.0.0.0 --port ${APP_PORT} --reload'
     networks:
@@ -56,8 +58,25 @@ services:
     networks:
       - cpc
 
+  redis:
+    container_name: cpc_redis
+    image: redis
+    restart: unless-stopped
+    expose:
+      - 6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cpc
+    volumes:
+      - redis_data:/data
+
 volumes:
   cpc:
+  redis_data:
 
 networks:
   cpc:

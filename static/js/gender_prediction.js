@@ -73,14 +73,21 @@ function createFloatingElements() {
 
 // Функция для определения конечной позиции по X
 function getEndX(movementType, startX) {
-    switch(movementType) {
-        case 0: return startX + Math.random() * 20; // Легкий сдвиг вправо
-        case 1: return startX - Math.random() * 20; // Легкий сдвиг влево
-        case 2: return startX + (Math.random() * 40 - 20); // Случайный сдвиг
-        case 3: return startX + Math.sin(startX/10) * 30; // Волнообразное движение
-        case 4: return startX + (Math.random() > 0.5 ? 1 : -1) * 25; // Диагональ
-        case 5: return startX; // Прямо вниз
-        default: return startX;
+    switch (movementType) {
+        case 0:
+            return startX + Math.random() * 20; // Легкий сдвиг вправо
+        case 1:
+            return startX - Math.random() * 20; // Легкий сдвиг влево
+        case 2:
+            return startX + (Math.random() * 40 - 20); // Случайный сдвиг
+        case 3:
+            return startX + Math.sin(startX / 10) * 30; // Волнообразное движение
+        case 4:
+            return startX + (Math.random() > 0.5 ? 1 : -1) * 25; // Диагональ
+        case 5:
+            return startX; // Прямо вниз
+        default:
+            return startX;
     }
 }
 
@@ -133,7 +140,26 @@ function highlightCardWithHigherTotal() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     createFloatingElements();
     highlightCardWithHigherTotal();
 });
+
+// Инициализация плавающих элементов
+
+function initFloatingElements() {
+    const container = document.getElementById('floating-elements');
+    const elements = ['🧸', '🍼', '👚', '👕', '?', '？'];
+
+    for (let i = 0; i < 40; i++) {
+        const el = document.createElement('div');
+        el.className = 'floating-element';
+        el.textContent = elements[Math.floor(Math.random() * elements.length)];
+        el.style.setProperty('--delay', Math.random() * 5 + 's');
+        el.style.setProperty('--duration', Math.random() * 15 + 10 + 's');
+        el.style.setProperty('--start-x', Math.random() * 100 + 'vw');
+        container.appendChild(el);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', initFloatingElements);
