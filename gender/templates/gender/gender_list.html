@@ -1,0 +1,74 @@
+{% load my_tags %}
+{% load static %}
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Кто же будет? Мальчик или девочка</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/googleapis.css' %}" rel="stylesheet">
+    <link href="{% static 'css/gender_prediction.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<!-- Фоновая анимация элементов -->
+<div id="floating-elements"></div>
+
+<div class="container centered-container">
+    <h1 class="header-title">Кто же будет?</h1>
+
+    <!-- Карточки -->
+    <div class="row justify-content-center">
+        <!-- Карточка девочки -->
+        <div class="col-lg-5 col-md-10 mb-4 me-lg-4">
+            <div class="card girl-card clickable-card" id="girlCard"
+                 onclick="window.location.href='{% url 'gender:update_page' object_list.1.pk %}'">
+                <div class="card-header text-center">
+                    <h3 class="my-0 fw-bold">{{ object_list.1.name }}</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="img-wrapper">
+                        <div class="img-container">
+                            <img src="{{ object_list.1.photo|mymedia }}" alt="Фото девочки">
+                        </div>
+                    </div>
+                    <h2 class="card-title pricing-card-title">
+                        <span id="girlCardTotal">{{ object_list.1.total }}</span> руб.
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Карточка мальчика -->
+        <div class="col-lg-5 col-md-10 mb-4 ms-lg-4">
+            <div class="card boy-card clickable-card" id="boyCard"
+                 onclick="window.location.href='{% url 'gender:update_page' object_list.0.pk %}'">
+                <div class="card-header text-center">
+                    <h3 class="my-0 fw-bold">{{ object_list.0.name }}</h3>
+                </div>
+                <div class="card-body text-center">
+                    <div class="img-wrapper">
+                        <div class="img-container">
+                            <img src="{{ object_list.0.photo|mymedia }}" alt="Фото мальчика">
+                        </div>
+                    </div>
+                    <h2 class="card-title pricing-card-title">
+                        <span id="boyCardTotal">{{ object_list.0.total }}</span> руб.
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="py-4">
+    <div class="container text-center">
+        <small class="text-muted" style="font-size: 1rem;">GromovAS &copy; С любовью😘 2025 </small>
+    </div>
+</footer>
+
+<script src="{% static 'js/gender_prediction.js' %}"></script>
+</body>
+</html>
