@@ -37,4 +37,3 @@ class GenderUpdateView(UpdateView):
         )
 
         return response
-
