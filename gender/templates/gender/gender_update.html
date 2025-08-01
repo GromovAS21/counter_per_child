@@ -11,6 +11,39 @@
     <link href="{% static 'css/gender_prediction.css' %}" rel="stylesheet">
     <link href="{% static 'css/gender_form.css' %}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Обновленные стили для правильного позиционирования */
+        .input-container {
+            position: relative;
+            width: 100%;
+            margin: 0 auto;
+            max-width: 400px;
+        }
+        .input-with-icon-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .edit-icon {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+            transition: none !important;
+        }
+        .edit-icon:hover {
+            transform: translateY(-50%) scale(1.1);
+        }
+        .form-group {
+            margin-bottom: 0;
+            width: 100%;
+        }
+        .form-control {
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
 </head>
 
 <body>
@@ -34,8 +67,8 @@
                         {% csrf_token %}
 
                         <!-- Поле для суммы с иконкой редактирования -->
-                        <div class="input-with-icon-wrapper">
-                            <div class="input-with-icon-row">
+                        <div class="input-container">
+                            <div class="input-with-icon-wrapper">
                                 <div class="form-group">
                                     <input type="number" name="{{ form.total.name }}" id="{{ form.total.id_for_label }}"
                                            class="form-control {% if object.name == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"

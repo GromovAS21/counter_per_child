@@ -29,7 +29,6 @@ class GenderUpdateView(UpdateView):
         new_value = form.cleaned_data["total"]
         gender.total += new_value
         gender.save()
-        # Отправляем обновление через WebSocket
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             "gender_updates",
@@ -54,7 +53,6 @@ class GenderFullUpdateView(UpdateView):
     template_name = "gender/gender_update_full_total.html"
 
     def form_valid(self, form):
-        # Отправляем обновление через WebSocket
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
             "gender_updates",
