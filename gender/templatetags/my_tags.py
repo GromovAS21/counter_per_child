@@ -13,3 +13,9 @@ def mymedia(path):
     if path:
         return f"/media/{path}"
     return "#"
+
+@register.filter()
+def uppercase(value):
+    """Переводит значение в верхний регистр."""
+    if value:
+        return value.upper()

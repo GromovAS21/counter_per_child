@@ -24,10 +24,38 @@ body {
 .header-title {
     margin-bottom: 3rem;
     text-align: center;
-    font-family: 'Pacifico', cursive;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 3.5rem;
-    animation: colorChange 8s infinite alternate;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: 700;
+    font-size: 5.0rem;
+    animation: smoothColorFlow 16s ease infinite;
+    will-change: color;
+}
+
+@keyframes smoothColorFlow {
+    0%, 100% {
+        color: #0d8bf2;  /* Яркий голубой */
+        text-shadow: 0 0 10px rgba(13, 139, 242, 0.3);
+    }
+    20% {
+        color: #4facfe;  /* Светло-голубой */
+        text-shadow: 0 0 12px rgba(79, 172, 254, 0.4);
+    }
+    40% {
+        color: #90caf9;  /* Пастельно-голубой */
+        text-shadow: 0 0 14px rgba(144, 202, 249, 0.3);
+    }
+    60% {
+        color: #ffb6c1;  /* Светло-розовый */
+        text-shadow: 0 0 12px rgba(255, 182, 193, 0.3);
+    }
+    70% {
+        color: #ff80ab;  /* Розовый */
+        text-shadow: 0 0 15px rgba(255, 128, 171, 0.4);
+    }
+    80% {
+        color: #f75990;  /* Ярко-розовый */
+        text-shadow: 0 0 18px rgba(247, 89, 144, 0.5);
+    }
 }
 
 /* Карточки */
@@ -70,6 +98,7 @@ body {
     font-weight: 700;
     font-size: 2.5rem;
     color: #fff;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     background-color: transparent !important;
     flex-shrink: 0;
@@ -109,6 +138,7 @@ body {
 
 .card-title {
     font-size: 2.5rem;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #333;
     margin-top: 1.5rem;
     background-color: rgba(255, 255, 255, 0.7);
@@ -243,10 +273,22 @@ footer {
 @media (max-width: 768px) {
     .header-title {
         font-size: 2.5rem;
+        animation: pastelFlowMobile 10s ease-in-out infinite;
+    }
+
+    @keyframes pastelFlowMobile {
+        0%, 100% {
+            color: #64b5f6;
+            text-shadow: 0 0 8px rgba(100, 181, 246, 0.3);
+        }
+        50% {
+            color: #f48fb1;
+            text-shadow: 0 0 12px rgba(244, 143, 177, 0.4);
+        }
     }
 
     .card-header {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .card-header h3 {

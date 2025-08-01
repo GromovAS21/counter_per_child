@@ -1,17 +1,4 @@
-{% load static %}
-<!doctype html>
-<html lang="ru">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Обновить запись</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Comfortaa:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="{% static 'css/gender_prediction.css' %}" rel="stylesheet">
-    <style>
-        /* Основные стили для центрирования */
+/* Основные стили для центрирования */
         .form-container {
             display: flex;
             flex-direction: column;
@@ -20,13 +7,14 @@
             width: 100%;
         }
 
-        /* Стили для карточки */
+        /* Стили для карточки*/
         .form-card {
-            background-color: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(8px);
+            background-color: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(4px);
             border: none;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         /* Контейнер для поля ввода и иконки */
@@ -137,6 +125,7 @@
         /* Контейнер для кнопок */
         .button-container {
             display: flex;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
             justify-content: center;
             gap: 15px;
             width: 100%;
@@ -193,35 +182,52 @@
 
         /* Заголовок формы */
         .form-title {
-            font-family: 'Pacifico', cursive;
+            font-family: "Comic Sans MS", "Comic Sans", cursive;
             margin-bottom: 2rem;
             font-size: 2.5rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Цвета заголовка в зависимости от пола */
-        .form-title-boy {
-            color: #2196f3;
-            animation: colorPulseBlue 2s infinite;
-        }
+         /* Цвета заголовка в зависимости от пола */
+    .form-title-boy {
+        color: #1e88e5;
+        animation: colorPulseBlue 6s ease-in-out infinite; /* Увеличено время и изменена функция */
+    }
 
-        .form-title-girl {
-            color: #e91e63;
-            animation: colorPulsePink 2s infinite;
-        }
+    .form-title-girl {
+        color: #ec407a;
+        animation: colorPulsePink 6s ease-in-out infinite; /* Увеличено время и изменена функция */
+    }
 
-        @keyframes colorPulseBlue {
-            0% { color: #2196f3; }
-            50% { color: #64b5f6; }
-            100% { color: #2196f3; }
+    @keyframes colorPulseBlue {
+        0% {
+            color: #1e88e5;
+            text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
         }
-
-        @keyframes colorPulsePink {
-            0% { color: #e91e63; }
-            50% { color: #ff80ab; }
-            100% { color: #e91e63; }
+        50% {
+            color: #64b5f6;
+            text-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
         }
+        100% {
+            color: #1e88e5;
+            text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
+        }
+    }
 
+    @keyframes colorPulsePink {
+        0% {
+            color: #ec407a;
+            text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
+        }
+        50% {
+            color: #ff80ab;
+            text-shadow: 0 0 15px rgba(255, 128, 171, 0.5);
+        }
+        100% {
+            color: #ec407a;
+            text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
+        }
+    }
         /* Эффекты при наведении */
         .btn:hover {
             transform: translateY(-3px);
@@ -241,76 +247,3 @@
             background: rgba(255, 255, 255, 0.9);
             color: #f48fb1;
         }
-    </style>
-</head>
-
-<body>
-<!-- Фоновая анимация элементов -->
-<div id="floating-elements"></div>
-
-<div class="container centered-container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10">
-            <div class="card form-card mb-4 box-shadow">
-                <div class="card-body p-4 p-md-5 form-container">
-                    <h2 class="form-title {% if object.name == 'Мальчик' %}form-title-boy{% else %}form-title-girl{% endif %}">
-                        {% if object.name == "Мальчик" %}
-                        Добавить сумму для мальчика
-                        {% else %}
-                        Добавить сумму для девочки
-                        {% endif %}
-                    </h2>
-
-                    <form method="post" enctype="multipart/form-data" class="w-100">
-                        {% csrf_token %}
-
-                        <!-- Поле для суммы с иконкой редактирования -->
-                        <div class="input-with-icon-wrapper">
-                            <div class="input-with-icon-row">
-                                <div class="form-group">
-                                    <input type="number" name="{{ form.total.name }}" id="{{ form.total.id_for_label }}"
-                                           class="form-control {% if object.name == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"
-                                           placeholder="Введите сумму"
-                                           value="{{ form.total.value|default_if_none:'' }}">
-                                </div>
-                                <i class="fas fa-pen edit-icon {% if object.name == 'Мальчик' %}edit-icon-boy{% else %}edit-icon-girl{% endif %}"
-                                   title="Редактировать всю сумму"
-                                   onclick="document.getElementById('{{ form.total.id_for_label }}').value = ''; document.getElementById('{{ form.total.id_for_label }}').focus();"></i>
-                            </div>
-                            {% if form.total.errors %}
-                                <div class="text-danger">
-                                    <ul>
-                                        {% for error in form.total.errors %}
-                                        <li>{{ error }}</li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            {% endif %}
-                        </div>
-
-                        <div class="button-container">
-                            <button type="submit" class="btn {% if object.name == 'Мальчик' %}btn-boy{% else %}btn-girl{% endif %}">
-                                Добавить
-                            </button>
-                            <a class="btn {% if object.name == 'Мальчик' %}btn-cancel-boy{% else %}btn-cancel-girl{% endif %}"
-                               href="{% url 'gender:home_page' %}"
-                               role="button">
-                                Отмена
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<footer class="py-4">
-    <div class="container text-center">
-        <small class="text-muted" style="font-size: 1rem;">GromovAS &copy; С любовью😘 2025 </small>
-    </div>
-</footer>
-
-<script src="{% static 'js/gender_prediction.js' %}"></script>
-</body>
-</html>
