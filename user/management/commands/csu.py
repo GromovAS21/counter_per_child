@@ -1,18 +1,24 @@
 import os
 
 import django
-from django.contrib.auth.models import User
 from django.core.management import BaseCommand
+
+from user.models import User
 
 
 class Command(BaseCommand):
     """Команда для создания суперпользователя"""
 
     def handle(self, *args, **options):
-
         try:
-            superuser = User.objects.create_superuser(
-                username=os.getenv("ADMIN_USERNAME"),
+            superuser = User.objects.create(
+                email=os.getenv("ADMIN_USERNAME"),
+                is_superuser=True,
+                is_staff=True,
+                is_active=True,
+                first_name=os.getenv("ADMIN_FIRST_NAME"),
+                second_name=os.getenv("ADMIN_SECOND_NAME"),
+                last_name=os.getenv("ADMIN_LAST_NAME"),
             )
             superuser.set_password(os.getenv("ADMIN_PASSWORD"))
             superuser.save()

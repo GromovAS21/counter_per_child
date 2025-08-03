@@ -20,7 +20,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "channels",
+    "phonenumber_field",
     "gender",
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -108,3 +110,5 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+AUTH_USER_MODEL = "user.User"

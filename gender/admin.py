@@ -5,4 +5,6 @@ from gender.models import Gender
 
 @admin.register(Gender)
 class GenderAdmin(admin.ModelAdmin):
-    list_display = ("id", "name", "total")
+    list_display = ("id", "gender", "amount", "user_id")
+    list_filter = ("gender", "user_id")
+    search_fields = ("user_id", )
