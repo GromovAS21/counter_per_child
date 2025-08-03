@@ -33,27 +33,27 @@ body {
 
 @keyframes smoothColorFlow {
     0%, 100% {
-        color: #0d8bf2;  /* Яркий голубой */
+        color: #0d8bf2; /* Яркий голубой */
         text-shadow: 0 0 10px rgba(13, 139, 242, 0.3);
     }
     20% {
-        color: #4facfe;  /* Светло-голубой */
+        color: #4facfe; /* Светло-голубой */
         text-shadow: 0 0 12px rgba(79, 172, 254, 0.4);
     }
     40% {
-        color: #90caf9;  /* Пастельно-голубой */
+        color: #90caf9; /* Пастельно-голубой */
         text-shadow: 0 0 14px rgba(144, 202, 249, 0.3);
     }
     60% {
-        color: #ffb6c1;  /* Светло-розовый */
+        color: #ffb6c1; /* Светло-розовый */
         text-shadow: 0 0 12px rgba(255, 182, 193, 0.3);
     }
     70% {
-        color: #ff80ab;  /* Розовый */
+        color: #ff80ab; /* Розовый */
         text-shadow: 0 0 15px rgba(255, 128, 171, 0.4);
     }
     80% {
-        color: #f75990;  /* Ярко-розовый */
+        color: #f75990; /* Ярко-розовый */
         text-shadow: 0 0 18px rgba(247, 89, 144, 0.5);
     }
 }
@@ -70,7 +70,7 @@ body {
     flex-direction: column;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(4px);
 }
 
 .clickable-card {
@@ -228,15 +228,29 @@ footer {
 }
 
 @keyframes number-pulse-green {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); color: #2E7D32; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        color: #2E7D32;
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 @keyframes number-pulse-red {
-    0% { transform: scale(1); }
-    50% { transform: scale(0.9); color: #C62828; }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+        color: #C62828;
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Анимация пульсации карточки */
@@ -245,9 +259,15 @@ footer {
 }
 
 @keyframes card-pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-    100% { transform: scale(1); }
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
 /* Цвета заголовка */

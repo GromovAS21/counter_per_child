@@ -1,55 +1,6 @@
-{% load static %}
-<!doctype html>
-<html lang="ru">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Обновить запись</title>
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/googleapis.css' %}" rel="stylesheet">
-    <link href="{% static 'css/gender_prediction.css' %}" rel="stylesheet">
-    <link href="{% static 'css/gender_form.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        /* Обновленные стили для правильного позиционирования */
-        .input-container {
-            position: relative;
-            width: 100%;
-            margin: 0 auto;
-            max-width: 400px;
-        }
-        .input-with-icon-wrapper {
-            position: relative;
-            width: 100%;
-        }
-        .edit-icon {
-            position: absolute;
-            right: -40px;
-            top: 50%;
-            transform: translateY(-50%);
-            cursor: pointer;
-            z-index: 2;
-            transition: none !important;
-        }
-        .edit-icon:hover {
-            transform: translateY(-50%) scale(1.1);
-        }
-        .form-group {
-            margin-bottom: 0;
-            width: 100%;
-        }
-        .form-control {
-            margin: 0 auto;
-            display: block;
-        }
-    </style>
-</head>
-
-<body>
-<!-- Фоновая анимация элементов -->
-<div id="floating-elements"></div>
-
+{% block content %}
 <div class="container centered-container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
@@ -71,8 +22,9 @@
                             <div class="input-with-icon-wrapper">
                                 <div class="form-group">
                                     <input type="number" name="{{ form.total.name }}" id="{{ form.total.id_for_label }}"
-                                           class="form-control {% if object.name == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"
+                                           class="form-control-update {% if object.name == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"
                                            placeholder="Введите сумму"
+                                           style="color: #000;"
                                     >
                                 </div>
                                 <i class="fas fa-pen edit-icon {% if object.name == 'Мальчик' %}edit-icon-boy{% else %}edit-icon-girl{% endif %}"
@@ -107,13 +59,4 @@
         </div>
     </div>
 </div>
-
-<footer class="py-4">
-    <div class="container text-center">
-        <small class="text-muted" style="font-size: 1rem;">GromovAS &copy; С любовью😘 2025 </small>
-    </div>
-</footer>
-
-<script src="{% static 'js/gender_prediction.js' %}"></script>
-</body>
-</html>
+{% endblock %}

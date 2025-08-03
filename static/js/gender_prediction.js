@@ -14,7 +14,7 @@ function createFloatingElements() {
     container.innerHTML = '';
 
     // Увеличиваем количество элементов для более частого падения
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
         const element = document.createElement('div');
         element.className = 'floating-element';
 
