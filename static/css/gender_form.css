@@ -11,7 +11,7 @@ input[type="number"] {
 }
 
 /* Основные стили для центрирования */
-.form-container {
+.form-container-update {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,7 +20,7 @@ input[type="number"] {
 }
 
 /* Стили для карточки*/
-.form-card {
+.form-card-update {
     background-color: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(4px);
     border: none;
@@ -71,7 +71,9 @@ input[type="number"] {
     max-width: 380px;
     box-sizing: border-box;
     background-color: rgba(255, 255, 255, 0.8);
-    outline: none; /* Это уберет стандартный outline браузера */
+    outline: none;
+    color: #000;
+
 }
 
 /* Стиль для поля ввода мальчика */
@@ -154,7 +156,7 @@ input[type="number"] {
 }
 
 /* Контейнер для кнопок */
-.button-container {
+.button-container-update {
     display: flex;
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     justify-content: center;
@@ -166,7 +168,7 @@ input[type="number"] {
 }
 
 /* Общие стили для кнопок */
-.btn {
+.btn-update {
     border-radius: 50px;
     padding: 12px 35px;
     font-weight: bold;
@@ -178,14 +180,14 @@ input[type="number"] {
 }
 
 /* Стили для кнопки Добавить */
-.btn-boy {
+.btn-update-boy {
     background: linear-gradient(135deg, #64b5f6 0%, #a1c4fd 50%, #4facfe 100%);
     background-size: 200% auto;
     color: white !important;
     animation: gradientAnimation 3s ease infinite;
 }
 
-.btn-girl {
+.btn-update-girl {
     background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #f06292 100%);
     background-size: 200% auto;
     color: white !important;
@@ -205,20 +207,22 @@ input[type="number"] {
 }
 
 /* Стили для кнопки Отмена */
-.btn-cancel-boy {
+.btn-update-cancel-boy {
     background: rgba(255, 255, 255, 0.8);
     color: #64b5f6;
     border-color: #bbdefb;
+    text-decoration: none
 }
 
-.btn-cancel-girl {
+.btn-update-cancel-girl {
     background: rgba(255, 255, 255, 0.8);
     color: #ff80ab;
     border-color: #ffcdd2;
+    text-decoration: none
 }
 
 /* Заголовок формы */
-.form-title {
+.form-title-update {
     font-family: "Comic Sans MS", "Comic Sans", cursive;
     margin-bottom: 2rem;
     font-size: 2.5rem;
@@ -226,12 +230,12 @@ input[type="number"] {
 }
 
 /* Цвета заголовка в зависимости от пола */
-.form-title-boy {
+.form-title-update-boy {
     color: #1e88e5;
     animation: colorPulseBlue 6s ease-in-out infinite;
 }
 
-.form-title-girl {
+.form-title-update-girl {
     color: #ec407a;
     animation: colorPulsePink 6s ease-in-out infinite;
 }
@@ -267,21 +271,21 @@ input[type="number"] {
 }
 
 /* Эффекты при наведении */
-.btn:hover {
+.btn-update:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.btn-boy:hover, .btn-girl:hover {
+.btn-update-boy:hover, .btn-update-girl:hover {
     color: white !important;
 }
 
-.btn-cancel-boy:hover {
+.btn-update-cancel-boy:hover {
     background: rgba(255, 255, 255, 0.9);
     color: #42a5f5;
 }
 
-.btn-cancel-girl:hover {
+.btn-update-cancel-girl:hover {
     background: rgba(255, 255, 255, 0.9);
     color: #f48fb1;
 }

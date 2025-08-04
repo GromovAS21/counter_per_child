@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <!-- Карточка формы -->
+                <div class="form-card-login p-4 p-md-4 mb-4 text-center text-dark">
+                    На указанную электронную почту отправлено письмо с ссылкой для активации аккаунта. Проверьте почту.
+                   <div class="button-container mt-3">
+                            <div class="text-center">
+                                <span class="btn-back-wrapper">
+                                    <a href="{% url 'user:login' %}" class="btn-back" style="text-decoration: none;">
+                                        На главную
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

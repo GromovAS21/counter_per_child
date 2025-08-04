@@ -4,10 +4,10 @@
 <div class="container centered-container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
-            <div class="card form-card mb-4 box-shadow">
-                <div class="card-body p-4 p-md-5 form-container">
-                    <h2 class="form-title {% if object.name == 'Мальчик' %}form-title-boy{% else %}form-title-girl{% endif %}">
-                        {% if object.name == "Мальчик" %}
+            <div class="card form-card-update mb-4 box-shadow">
+                <div class="card-body p-4 p-md-5 form-container-update">
+                    <h2 class="form-title-update {% if object.gender == 'Мальчик' %}form-title-update-boy{% else %}form-title-update-girl{% endif %}">
+                        {% if object.gender == "Мальчик" %}
                         Добавить сумму для мальчика
                         {% else %}
                         Добавить сумму для девочки
@@ -21,13 +21,12 @@
                         <div class="input-container">
                             <div class="input-with-icon-wrapper">
                                 <div class="form-group">
-                                    <input type="number" name="{{ form.total.name }}" id="{{ form.total.id_for_label }}"
-                                           class="form-control-update {% if object.name == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"
+                                    <input type="number" name="{{ form.amount.name }}" id="{{ form.amount.id_for_label }}"
+                                           class="form-control-update {% if object.gender == 'Мальчик' %}form-control-boy{% else %}form-control-girl{% endif %}"
                                            placeholder="Введите сумму"
-                                           style="color: #000;"
                                     >
                                 </div>
-                                <i class="fas fa-pen edit-icon {% if object.name == 'Мальчик' %}edit-icon-boy{% else %}edit-icon-girl{% endif %}"
+                                <i class="fas fa-pen edit-icon {% if object.gender == 'Мальчик' %}edit-icon-boy{% else %}edit-icon-girl{% endif %}"
                                    title="Редактировать сумму"
                                    onclick="window.location.href='{% url 'gender:update_full_page' object.id %}'"></i>
                             </div>
@@ -42,12 +41,12 @@
                             {% endif %}
                         </div>
 
-                        <div class="button-container">
+                        <div class="button-container-update">
                             <button type="submit"
-                                    class="btn {% if object.name == 'Мальчик' %}btn-boy{% else %}btn-girl{% endif %}">
+                                    class="btn-update {% if object.gender == 'Мальчик' %}btn-update-boy{% else %}btn-update-girl{% endif %}">
                                 Добавить
                             </button>
-                            <a class="btn {% if object.name == 'Мальчик' %}btn-cancel-boy{% else %}btn-cancel-girl{% endif %}"
+                            <a class="btn-update {% if object.gender == 'Мальчик' %}btn-update-cancel-boy{% else %}btn-update-cancel-girl{% endif %}"
                                href="{% url 'gender:home_page' %}"
                                role="button">
                                 Отмена

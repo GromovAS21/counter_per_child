@@ -123,3 +123,36 @@
     color: #ff6b6b;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
+
+.menu-item.logout i {
+    color: #ff6b6b;
+    margin-right: 8px;
+}
+
+.menu-item.logout:hover {
+    background-color: rgba(175, 76, 76, 0.1);
+}
+
+.menu-item.logout:hover i,
+.menu-item.logout:hover span {
+    color: #ff6b6b;
+}
+
+/* Стили для кнопки входа */
+.menu-item.login {
+    color: #4CAF50;
+}
+
+.menu-item.login i {
+    color: #4CAF50;
+    margin-right: 8px;
+}
+
+.menu-item.login:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+
+.menu-item.login:hover i,
+.menu-item.login:hover span {
+    color: #388E3C;
+}

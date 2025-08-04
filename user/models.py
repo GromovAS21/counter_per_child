@@ -46,6 +46,8 @@ class User(AbstractUser):
         region="RU",
         verbose_name="Телефон",
         help_text="Формат: +X XXX XXX XX XX",
+        blank=True,
+        null=True
     )
     created_at = models.DateTimeField(
         auto_now_add=True,

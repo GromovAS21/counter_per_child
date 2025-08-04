@@ -6,8 +6,8 @@ from gender.models import Gender
 
 class GenderUpdateForm(ModelForm):
     """Форма для ввода данных"""
-    total = forms.IntegerField()
+    amount = forms.IntegerField()
 
     class Meta:
         model = Gender
-        fields = ("total",)
+        fields = ("amount",)

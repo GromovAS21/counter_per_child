@@ -14,16 +14,16 @@
             <div class="card girl-card clickable-card" id="girlCard"
                  onclick="window.location.href='{% url 'gender:update_page' object_list.1.pk %}'">
                 <div class="card-header text-center">
-                    <h3 class="my-0 fw-bold">{{ object_list.1.name|uppercase }}</h3>
+                    <h3 class="my-0 fw-bold">{{ girl.gender|uppercase }}</h3>
                 </div>
                 <div class="card-body text-center">
                     <div class="img-wrapper">
                         <div class="img-container">
-                            <img src="{{ object_list.1.photo|mymedia }}" alt="Фото девочки">
+                            <img src="{{ girl.image|mymedia }}" alt="Фото девочки">
                         </div>
                     </div>
                     <h2 class="card-title pricing-card-title">
-                        <span id="girlCardTotal">{{ object_list.1.total }}</span> руб.
+                        <span id="girlCardTotal">{{ girl.amount }}</span> руб.
                     </h2>
                 </div>
             </div>
@@ -34,16 +34,16 @@
             <div class="card boy-card clickable-card" id="boyCard"
                  onclick="window.location.href='{% url 'gender:update_page' object_list.0.pk %}'">
                 <div class="card-header text-center">
-                    <h3 class="my-0 fw-bold">{{ object_list.0.name|uppercase }}</h3>
+                    <h3 class="my-0 fw-bold">{{ boy.gender|uppercase }}</h3>
                 </div>
                 <div class="card-body text-center">
                     <div class="img-wrapper">
                         <div class="img-container">
-                            <img src="{{ object_list.0.photo|mymedia }}" alt="Фото мальчика">
+                            <img src="{{ boy.image|mymedia }}" alt="Фото мальчика">
                         </div>
                     </div>
                     <h2 class="card-title pricing-card-title">
-                        <span id="boyCardTotal">{{ object_list.0.total }}</span> руб.
+                        <span id="boyCardTotal">{{ boy.amount }}</span> руб.
                     </h2>
                 </div>
             </div>
