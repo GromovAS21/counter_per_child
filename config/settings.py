@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -119,3 +121,8 @@ EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL") == "True"
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/users/login/"
+
+LOGIN_URL = "/users/login/"

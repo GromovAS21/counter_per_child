@@ -1,12 +1,14 @@
 import secrets
 
 from django.core.mail import send_mail
-from django.shortcuts import render
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView
 
 from config.settings import EMAIL_HOST_USER
+from gender.models import Gender, GenderChoices
 from user.forms import UserCreateForm
+from user.models import User
 
 
 class UserRegisterView(CreateView):
@@ -21,7 +23,7 @@ class UserRegisterView(CreateView):
         user.token = secrets.token_hex(16)
         user.save()
         host = self.request.get_host()
-        url = "http://{}/users/email-confirm/{}".format(host, user.token)
+        url = "http://{}/users/email-verification/{}/".format(host, user.token)
         send_mail(
             "Подтверждение почты в сервисе 'Кто же будет?'",
             "Перейдите по ссылке для завершения регистрации пользователя:\n{}".format(url),
@@ -36,3 +38,15 @@ def success_register(request):
         return render(request, "user/success_register.html")
 
 
+
+def email_verification(request, token):
+    """
+    Перевод пользователя в статуc Активный при проходе по ссылке с почты
+    """
+    user = get_object_or_404(User, token=token)
+    user.is_active = True
+    user.token = None
+    user.save(update_fields=["is_active", "token"])
+    Gender.objects.create(gender=GenderChoices.boy, user_id=user)
+    Gender.objects.create(gender=GenderChoices.girl, user_id=user)
+    return render(request, "user/email-confirm.html")

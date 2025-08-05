@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <!-- Заголовок формы -->
+                <h1 class="form-title text-center mb-4" style="
+                    background: linear-gradient(-45deg, #f06292, #64b5f6, #ff80ab, #4facfe, #f48fb1, #90caf9);
+                    background-size: 400% 400%;
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    animation: gradientTitle 10s ease infinite;
+                ">Вход</h1>
+
+                <!-- Карточка формы -->
+                <div class="form-card-login p-4 p-md-4 mb-4">
+                    <form method="post" class="form-container" autocomplete="off">
+                        {% csrf_token %}
+                        <!-- Поля формы -->
+                        {% for field in form %}
+                        <div class="input-with-icon-wrapper">
+                            <div class="input-with-icon-row">
+                                <div class="form-group input-wrapper {% if field.errors %}has-error{% endif %}">
+                                    <input type="{{ field.field.widget.input_type }}"
+                                           name="{{ field.name }}"
+                                           id="{{ field.auto_id }}"
+                                           class="form-control-login {% if field.errors %}is-invalid{% endif %}"
+                                           placeholder="{{ field.label }}"
+                                           autocomplete="new-password"
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <!-- Ошибки валидации -->
+                                    {% if field.errors %}
+                                    <div class="invalid-feedback">
+                                        {% for error in field.errors %}
+                                        {{ error }}
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- Кнопки -->
+                        <div class="button-container mt-0"
+                             style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px;">
+                            <button type="submit" class="btn btn-register" style="padding: 10px 30px; height: auto;">
+                                <i class="fas fa-sign-in-alt"></i> Вход
+                            </button>
+                            <span class="btn-back-wrapper" style="height: 100%;">
+                                <a class="btn-back" href="{% url 'user:user_register' %}"
+                                   style="padding: 10px 30px; display: inline-flex; align-items: center; justify-content: center; height: 100%;">
+                                    <i class="fas fa-user-plus me-2"></i> Регистрация
+                                </a>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

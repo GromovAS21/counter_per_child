@@ -5,26 +5,31 @@
     flex-direction: column;
     justify-content: center;
     padding: 20px 0;
-    background-color: #f8f9fa;
 }
 
 /* Анимация для заголовка */
 @keyframes gradientTitle {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Стили для формы */
 .form-container {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem; /* Уменьшенный отступ между элементами формы */
+    gap: 1rem;
 }
 
 /* Стили для полей ввода */
 .input-with-icon-wrapper {
-    margin-bottom: 0.5rem; /* Компактные отступы между полями */
+    margin-bottom: 0;
 }
 
 .input-wrapper {
@@ -32,11 +37,10 @@
     max-width: 400px;
     margin: 0 auto;
     transition: all 0.3s ease;
-    margin-bottom: 0.5rem; /* Базовый отступ */
 }
 
 .input-wrapper.has-error {
-    margin-bottom: 1.8rem; /* Увеличенный отступ при ошибке */
+    margin-bottom: 1.8rem;
 }
 
 .input-wrapper::before {
@@ -64,7 +68,7 @@
     font-size: 0.95rem;
     color: #000;
     height: 48px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
 
 .form-control-login.is-invalid {
@@ -102,12 +106,12 @@
 /* Стили для кнопки регистрации */
 .btn-register {
     background: linear-gradient(135deg,
-        #ff9a9e 0%,
-        #fad0c4 20%,
-        #f48fb1 40%,
-        #a1c4fd 60%,
-        #64b5f6 80%,
-        #4facfe 100%);
+    #ff9a9e 0%,
+    #fad0c4 20%,
+    #f48fb1 40%,
+    #a1c4fd 60%,
+    #64b5f6 80%,
+    #4facfe 100%);
     background-size: 300% 300%;
     color: white !important;
     border: none;
@@ -118,7 +122,6 @@
     z-index: 1;
     font-weight: 600;
     padding: 10px 30px;
-    margin-top: 0.5rem;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 }
@@ -133,7 +136,6 @@
     display: inline-block;
     position: relative;
     border-radius: 30px;
-    margin-top: 0.5rem;
     transition: all 0.3s ease;
     background: linear-gradient(-45deg, #f06292, #64b5f6, #ff80ab, #4facfe);
     background-size: 400% 400%;
@@ -160,9 +162,15 @@
 }
 
 @keyframes gradientAnimation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 /* Карточка формы */
@@ -174,7 +182,7 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     max-width: 500px;
     margin: 0 auto;
-    padding: 1.5rem;
+    padding: 2.5rem; /* Увеличиваем внутренний отступ карточки */
 }
 
 /* Контейнер кнопок */
@@ -183,7 +191,7 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    margin-top: 1rem;
+    margin-top: 1rem; /* Уменьшаем отступ сверху */
 }
 
 /* Заголовок формы */
@@ -197,4 +205,24 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: gradientTitle 10s ease infinite;
+}
+
+.gradient-title {
+    background: linear-gradient(-45deg, #f06292, #64b5f6, #ff80ab, #4facfe, #f48fb1, #90caf9);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTitle 10s ease infinite;
+}
+
+.gradient-title .title-text {
+    display: inline-block;
+    text-align: center;
+}
+
+.gradient-title .emoji {
+    -webkit-text-fill-color: initial;
+    background: none;
+    animation: none;
+    margin-left: 10px;
 }

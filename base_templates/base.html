@@ -1,4 +1,5 @@
 {% load static %}
+{% load my_tags %}
 <!DOCTYPE html>
 <html lang="ru">
 
@@ -19,6 +20,7 @@
 <!-- Фоновая анимация элементов -->
 <div id="floating-elements"></div>
 
+{% if not request.resolver_match.url_name == 'login' %}
 <!-- Меню -->
 <div class="menu-container">
     <button class="menu-btn" id="menuBtn">
@@ -31,8 +33,14 @@
         {% if user.is_authenticated %}
         <a href="/" class="menu-user-link">
             <div class="menu-user">
-                <img src="/media/default-avatar.png/" alt="Аватар" class="user-avatar">
-                <div class="user-name">{{ user.email }}</div>
+                {% if user.avatar %}
+                <img src="{{user.avatar| mymedia}}" alt="Аватар" class="user-avatar">
+                {% else %}
+                <img src="/media/default-avatar.png" alt="Аватар" class="user-avatar">
+                {% endif %}
+                <div class="user-name-container">
+                    <div class="user-name">{{ user.email }}</div>
+                </div>
             </div>
         </a>
 
@@ -43,14 +51,15 @@
             </div>
         </a>
 
-        <a href="{% url 'user:login' %}" class="menu-item-link">
-            <div class="menu-item logout">
+        <form action="{% url 'user:logout' %}" method="post" class="menu-item-link">
+            {% csrf_token %}
+            <button type="submit" class="menu-item logout">
                 <i class="fas fa-sign-out-alt"></i>
                 <span>Выход</span>
-            </div>
-        </a>
+            </button>
+        </form>
         {% else %}
-        <a href="/" class="menu-item-link">
+        <a href="{% url 'user:login' %}" class="menu-item-link">
             <div class="menu-item login">
                 <i class="fas fa-sign-in-alt"></i>
                 <span>Вход</span>
@@ -59,6 +68,7 @@
         {% endif %}
     </div>
 </div>
+{% endif %}
 
 {% block content %}
 {% endblock %}

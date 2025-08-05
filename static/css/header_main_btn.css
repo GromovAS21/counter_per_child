@@ -66,6 +66,9 @@
     padding: 12px 15px;
     cursor: pointer;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    max-width: 200px;
+    overflow: hidden;
+    position: relative;
 }
 
 .menu-user:hover {
@@ -78,11 +81,6 @@
     display: block;
 }
 
-.menu-user:hover, .menu-item:hover {
-    background-color: #f5f5f5;
-    cursor: pointer;
-}
-
 .user-avatar {
     width: 32px;
     height: 32px;
@@ -92,10 +90,40 @@
     border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+.user-name-container {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    margin-right: 10px;
+}
+
 .user-name {
     font-size: 0.9rem;
     font-weight: 500;
     color: #333;
+    white-space: nowrap;
+    display: inline-block;
+    padding-left: 100%;
+    animation: scrollText 10s linear infinite;
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.menu-user:hover .user-name {
+    animation-play-state: paused;
+}
+
+.user-name-container:not(.long-text) .user-name {
+    animation: none;
+    padding-left: 0;
+    transform: none;
 }
 
 .menu-item {
@@ -120,7 +148,7 @@
 }
 
 .menu-item.logout {
-    color: #ff6b6b;
+    color: #ff6b6b !important;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 

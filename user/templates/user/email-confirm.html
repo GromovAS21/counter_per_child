@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <h1 class="form-title text-center mb-4 gradient-title">
+                    <span class="title-text">Поздравляем!</span>
+                    <span class="emoji">🎉</span>
+                </h1>
+                <!-- Карточка формы -->
+                <div class="form-card-login p-4 p-md-4 mb-4 text-center text-dark">
+                    Ваша почта подтверждена.
+                    <br>
+                    Теперь вы можете войти в свой аккаунт.
+                    <div class="button-container mt-3">
+                        <div class="text-center">
+                                <span class="btn-back-wrapper">
+                                    <a href="{% url 'user:login' %}" class="btn-back" style="text-decoration: none;">
+                                        Войти в аккаунт
+                                    </a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

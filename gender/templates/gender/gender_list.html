@@ -12,18 +12,22 @@
         <!-- Карточка девочки -->
         <div class="col-lg-5 col-md-10 mb-4 me-lg-4">
             <div class="card girl-card clickable-card" id="girlCard"
-                 onclick="window.location.href='{% url 'gender:update_page' object_list.1.pk %}'">
+                 onclick="window.location.href='{% url 'gender:update_page' girl.pk %}'">
                 <div class="card-header text-center">
                     <h3 class="my-0 fw-bold">{{ girl.gender|uppercase }}</h3>
                 </div>
                 <div class="card-body text-center">
                     <div class="img-wrapper">
                         <div class="img-container">
-                            <img src="{{ girl.image|mymedia }}" alt="Фото девочки">
+                            {% if girl.image %}
+                            <img src="{{girl.image|mymedia}}" alt="Фото девочки">
+                            {% else %}
+                            <img src="/media/children/default_girl.png" alt="Аватар">
+                            {% endif %}
                         </div>
                     </div>
                     <h2 class="card-title pricing-card-title">
-                        <span id="girlCardTotal">{{ girl.amount }}</span> руб.
+                        <span id="girlCardTotal">{{girl.amount}}</span> руб.
                     </h2>
                 </div>
             </div>
@@ -32,18 +36,22 @@
         <!-- Карточка мальчика -->
         <div class="col-lg-5 col-md-10 mb-4 ms-lg-4">
             <div class="card boy-card clickable-card" id="boyCard"
-                 onclick="window.location.href='{% url 'gender:update_page' object_list.0.pk %}'">
+                 onclick="window.location.href='{% url 'gender:update_page' boy.pk %}'">
                 <div class="card-header text-center">
                     <h3 class="my-0 fw-bold">{{ boy.gender|uppercase }}</h3>
                 </div>
                 <div class="card-body text-center">
                     <div class="img-wrapper">
                         <div class="img-container">
-                            <img src="{{ boy.image|mymedia }}" alt="Фото мальчика">
+                            {% if boy.image %}
+                            <img src="{{boy.image|mymedia}}" alt="Фото мальчика">
+                            {% else %}
+                            <img src="/media/children/default_boy.png" alt="Аватар">
+                            {% endif %}
                         </div>
                     </div>
                     <h2 class="card-title pricing-card-title">
-                        <span id="boyCardTotal">{{ boy.amount }}</span> руб.
+                        <span id="boyCardTotal">{{boy.amount}}</span> руб.
                     </h2>
                 </div>
             </div>

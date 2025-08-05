@@ -14,7 +14,6 @@ class Gender(models.Model):
     gender = models.CharField(
         choices=GenderChoices,
         max_length=20,
-        unique=True,
         verbose_name='Пол',
     )
     amount = models.PositiveIntegerField(

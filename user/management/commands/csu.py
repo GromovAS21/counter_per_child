@@ -3,6 +3,7 @@ import os
 import django
 from django.core.management import BaseCommand
 
+from gender.models import GenderChoices, Gender
 from user.models import User
 
 
@@ -22,6 +23,8 @@ class Command(BaseCommand):
             )
             superuser.set_password(os.getenv("ADMIN_PASSWORD"))
             superuser.save()
+            Gender.objects.create(gender=GenderChoices.boy, user_id=superuser, image="children/admin_boy.png")
+            Gender.objects.create(gender=GenderChoices.girl, user_id=superuser, image="children/admin_girl.png")
 
         except django.db.utils.IntegrityError:
             self.stdout.write(self.style.ERROR("SUPERUSER ALREADY CREATED"))
