@@ -74,9 +74,6 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
@@ -122,7 +119,7 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS", False) == "True"
 EMAIL_USE_SSL = os.getenv("EMAIL_USE_SSL") == "True"
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/gender-cards/"
 LOGOUT_REDIRECT_URL = "/users/login/"
 
 LOGIN_URL = "/users/login/"
