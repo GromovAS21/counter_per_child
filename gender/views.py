@@ -1,5 +1,6 @@
 from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView
@@ -8,7 +9,7 @@ from gender.forms import GenderUpdateForm
 from gender.models import Gender, GenderChoices
 
 
-class GenderView(ListView):
+class GenderView(LoginRequiredMixin, ListView):
     model = Gender
 
     def get_context_data(self, **kwargs):
@@ -21,7 +22,7 @@ class GenderView(ListView):
         return context_data
 
 
-class GenderUpdateView(UpdateView):
+class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Прибавление суммы к полу."""
 
     model = Gender
@@ -49,8 +50,13 @@ class GenderUpdateView(UpdateView):
         )
         return HttpResponseRedirect(self.get_success_url())
 
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        child = self.get_object()
+        return self.request.user == child.user_id
 
-class GenderFullUpdateView(UpdateView):
+
+class GenderFullUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Обновление всей суммы пола."""
 
     model = Gender
@@ -73,3 +79,8 @@ class GenderFullUpdateView(UpdateView):
             }
         )
         return super().form_valid(form)
+
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        child = self.get_object()
+        return self.request.user == child.user_id

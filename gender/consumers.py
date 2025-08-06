@@ -1,10 +1,11 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from asgiref.sync import sync_to_async
-from .models import Gender
+
 
 class GenderUpdatesConsumer(AsyncWebsocketConsumer):
+    """Консьюмер для обновления данных о полах пользователей."""
     async def connect(self):
+        """Подключение клиента к каналу."""
         await self.accept()
         await self.channel_layer.group_add("gender_updates", self.channel_name)
 

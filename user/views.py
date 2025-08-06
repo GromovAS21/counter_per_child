@@ -21,22 +21,28 @@ class UserRegisterView(CreateView):
         user = form.save()
         user.is_active = False
         user.token = secrets.token_hex(16)
+        print(user.token)
         user.save()
         host = self.request.get_host()
-        url = "http://{}/users/email-verification/{}/".format(host, user.token)
+        url = "http://{}/users/email-confirm/{}/".format(host, user.token)
         send_mail(
             "Подтверждение почты в сервисе 'Кто же будет?'",
             "Перейдите по ссылке для завершения регистрации пользователя:\n{}".format(url),
             EMAIL_HOST_USER,
             [user.email],
         )
+        print(user.token)
+        self.request.session["success_register"] = True
         return super().form_valid(form)
 
 
 def success_register(request):
+    """Страница успешной регистрации."""
     if request.method == "GET":
+        if not request.session.get("success_register"):
+            return redirect(reverse("gender:home_page"))
+        del request.session["success_register"]
         return render(request, "user/success_register.html")
-
 
 
 def email_verification(request, token):
