@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="registration-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <!-- Заголовок формы -->
+                <h1 class="form-title text-center mb-4 gradient-title">
+                    <span class="title-text">Регистрация пользователя</span>
+                </h1>
+
+                <!-- Карточка формы -->
+                <div class="form-card-login p-4 p-md-4 mb-4">
+                    <!-- Общие ошибки формы -->
+                    {% if form.errors %}
+                    <div class="validation-errors mb-4">
+                        {% for error in form.non_field_errors %}
+                            <div class="error-item">
+                                <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+                            </div>
+                        {% endfor %}
+
+                        {% for field in form %}
+                            {% if field.errors %}
+                            <div class="error-item">
+                                <i class="fas fa-exclamation-circle me-2"></i>{{ field.label }}: {{ field.errors.0 }}
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form method="post" class="form-container" autocomplete="off">
+                        {% csrf_token %}
+                        <!-- Поля формы -->
+                        {% for field in form %}
+                        <div class="input-with-icon-wrapper mb-1">
+                            <div class="input-with-icon-row">
+                                <div class="form-group input-wrapper {% if field.errors %}has-error{% endif %}">
+                                    <input type="{{ field.field.widget.input_type }}"
+                                           name="{{ field.name }}"
+                                           id="{{ field.auto_id }}"
+                                           class="form-control-login {% if field.errors %}is-invalid{% endif %}"
+                                           placeholder="{{ field.label }}"
+                                           autocomplete="new-password"
+                                           value="{{ field.value|default_if_none:'' }}">
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- Кнопки -->
+                        <div class="button-container mt-0">
+                            <button type="submit" class="btn btn-register mb-2"
+                                    style="width: auto; padding: 10px 30px;">
+                                <i class="fas fa-user-plus me-2"></i> Зарегистрироваться
+                            </button>
+                            <div class="text-center">
+                                <span class="btn-back-wrapper">
+                                    <a href="{% url 'user:login' %}" class="btn-back" style="text-decoration: none;">
+                                        Назад
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

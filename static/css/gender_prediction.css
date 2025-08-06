@@ -1,0 +1,391 @@
+/* gender_prediction.css */
+
+/* Основные стили */
+body {
+    font-family: 'Comfortaa', cursive;
+    background: linear-gradient(135deg, #fff5f5 0%, #e3f2fd 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Контейнер */
+.centered-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Заголовок */
+.header-title {
+    margin-bottom: 3rem;
+    text-align: center;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-weight: 700;
+    font-size: 5.0rem;
+    animation: smoothColorFlow 16s ease infinite;
+    will-change: color;
+}
+
+@keyframes smoothColorFlow {
+    0%, 100% {
+        color: #0d8bf2; /* Яркий голубой */
+        text-shadow: 0 0 10px rgba(13, 139, 242, 0.3);
+    }
+    20% {
+        color: #4facfe; /* Светло-голубой */
+        text-shadow: 0 0 12px rgba(79, 172, 254, 0.4);
+    }
+    40% {
+        color: #90caf9; /* Пастельно-голубой */
+        text-shadow: 0 0 14px rgba(144, 202, 249, 0.3);
+    }
+    60% {
+        color: #ffb6c1; /* Светло-розовый */
+        text-shadow: 0 0 12px rgba(255, 182, 193, 0.3);
+    }
+    70% {
+        color: #ff80ab; /* Розовый */
+        text-shadow: 0 0 15px rgba(255, 128, 171, 0.4);
+    }
+    80% {
+        color: #f75990; /* Ярко-розовый */
+        text-shadow: 0 0 18px rgba(247, 89, 144, 0.5);
+    }
+}
+
+/* Карточки */
+.card {
+    border-radius: 20px !important;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    border: 3px solid transparent;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.clickable-card {
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.clickable-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Цвета карточек */
+.girl-card {
+    background: linear-gradient(135deg, rgba(255, 205, 210, 0.6) 0%, rgba(248, 187, 208, 0.6) 100%) !important;
+}
+
+.boy-card {
+    background: linear-gradient(135deg, rgba(187, 222, 251, 0.6) 0%, rgba(144, 202, 249, 0.6) 100%) !important;
+}
+
+/* Заголовок карточки */
+.card-header {
+    border-bottom: none !important;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: #fff;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    background-color: transparent !important;
+    flex-shrink: 0;
+    padding: 1.5rem 1rem 0 !important;
+    position: relative;
+}
+
+.card-header h3 {
+    display: inline-block;
+    background-color: white;
+    color: #333;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    font-size: 2.2rem;
+}
+
+.girl-card .card-header h3 {
+    color: #e91e63;
+}
+
+.boy-card .card-header h3 {
+    color: #2196f3;
+}
+
+/* Тело карточки */
+.card-body {
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.card-title {
+    font-size: 2.5rem;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    color: #333;
+    margin-top: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+/* Изображения */
+.img-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    padding: 1rem;
+}
+
+.img-container {
+    border: 8px solid white;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    max-width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.img-container:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 30px rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.img-container img {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 400px;
+    object-fit: contain;
+    filter: brightness(1.05) saturate(1.1);
+}
+
+/* Футер */
+footer {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(5px);
+    border-radius: 20px 20px 0 0;
+    margin-top: 3rem;
+}
+
+/* Анимации для WebSocket */
+
+/* Стили для ведущей карточки */
+.leading-card {
+    border: 3px solid #FFD700 !important;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7) !important;
+    animation: gold-glow 2s infinite alternate;
+}
+
+@keyframes gold-glow {
+    from {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+    }
+    to {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.9);
+    }
+}
+
+/* Анимация чисел */
+.increasing {
+    color: #4CAF50 !important;
+    animation: number-pulse-green 0.5s ease-out;
+}
+
+.decreasing {
+    color: #F44336 !important;
+    animation: number-pulse-red 0.5s ease-out;
+}
+
+@keyframes number-pulse-green {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+        color: #2E7D32;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes number-pulse-red {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.9);
+        color: #C62828;
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Анимация пульсации карточки */
+.updated-pulse {
+    animation: card-pulse 0.5s ease;
+}
+
+@keyframes card-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Цвета заголовка */
+@keyframes colorChange {
+    0% {
+        color: #e91e63;
+    }
+    25% {
+        color: #ff80ab;
+    }
+    50% {
+        color: #2196f3;
+    }
+    75% {
+        color: #64b5f6;
+    }
+    100% {
+        color: #f06292;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-title {
+        font-size: 2.5rem;
+        animation: pastelFlowMobile 10s ease-in-out infinite;
+    }
+
+    @keyframes pastelFlowMobile {
+        0%, 100% {
+            color: #64b5f6;
+            text-shadow: 0 0 8px rgba(100, 181, 246, 0.3);
+        }
+        50% {
+            color: #f48fb1;
+            text-shadow: 0 0 12px rgba(244, 143, 177, 0.4);
+        }
+    }
+
+    .card-header {
+        font-size: 3rem;
+    }
+
+    .card-header h3 {
+        font-size: 1.8rem;
+        padding: 0.6rem 1.5rem;
+    }
+
+    .card-title {
+        font-size: 2rem;
+    }
+
+    .img-container img {
+        max-height: 300px;
+    }
+}
+
+/* Плавающие элементы */
+.floating-element {
+    position: fixed;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    animation-timing-function: linear;
+}
+
+@keyframes fall-animation {
+    0% {
+        transform: translate(var(--start-x), -50px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translate(var(--end-x), calc(100vh + 50px)) rotate(var(--rotation));
+        opacity: 0;
+    }
+}
+
+/* Постоянная пульсация для лидирующей карточки */
+.pulsing-card {
+    animation: constant-pulse 2s infinite ease-in-out;
+}
+
+@keyframes constant-pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 30px rgba(255, 215, 0, 0.9);
+    }
+}
+
+/* Анимация при обновлении (кратковременная) */
+.updated-pulse {
+    animation: strong-pulse 0.5s ease;
+}
+
+@keyframes strong-pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+#girlCardTotal, #boyCardTotal {
+    transition: color 0.3s ease;
+}

@@ -1,0 +1,291 @@
+/* Убирает стрелки у числового поля ввода */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Для Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+/* Основные стили для центрирования */
+.form-container-update {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* Стили для карточки*/
+.form-card-update {
+    background-color: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Контейнер для поля ввода и иконки */
+.input-container {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+}
+
+.input-with-icon-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.input-with-icon-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+/* Стили для группы формы */
+.form-group {
+    margin-bottom: 0;
+    width: 100%;
+}
+
+/* Стили для поля ввода */
+.form-control-update {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    font-size: 1.2rem;
+    padding: 12px 20px;
+    border-radius: 50px;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 380px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.8);
+    outline: none;
+    color: #000;
+
+}
+
+/* Стиль для поля ввода мальчика */
+.form-control-boy {
+    border-color: rgba(100, 181, 246, 0.5);
+}
+
+.form-control-boy:focus {
+    border-color: #64b5f6;
+    box-shadow: 0 0 0 0.25rem rgba(100, 181, 246, 0.25);
+}
+
+/* Стиль для поля ввода девочки */
+.form-control-girl {
+    border-color: rgba(255, 154, 158, 0.5);
+}
+
+.form-control-girl:focus {
+    border-color: #ff9a9e;
+    box-shadow: 0 0 0 0.25rem rgba(255, 154, 158, 0.25);
+}
+
+/* Стили для ошибок валидации */
+.text-danger {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #dc3545;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.text-danger ul {
+    list-style: none;
+    padding-left: 5px;
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.text-danger li {
+    display: flex;
+    align-items: center;
+}
+
+.text-danger li:before {
+    content: "•";
+    margin-right: 5px;
+}
+
+/* Стили для иконки редактирования */
+.edit-icon {
+    position: absolute;
+    right: -45px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 2;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    background: transparent;
+    transition: transform 0.3s ease !important;
+}
+
+.edit-icon-boy {
+    color: #64b5f6;
+}
+
+.edit-icon-girl {
+    color: #ff9a9e;
+}
+
+.edit-icon:hover {
+    transform: translateY(-50%) scale(1.2);
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Контейнер для кнопок */
+.button-container-update {
+    display: flex;
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto 0;
+    flex-wrap: wrap;
+}
+
+/* Общие стили для кнопок */
+.btn-update {
+    border-radius: 50px;
+    padding: 12px 35px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* Стили для кнопки Добавить */
+.btn-update-boy {
+    background: linear-gradient(135deg, #64b5f6 0%, #a1c4fd 50%, #4facfe 100%);
+    background-size: 200% auto;
+    color: white !important;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+.btn-update-girl {
+    background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #f06292 100%);
+    background-size: 200% auto;
+    color: white !important;
+    animation: gradientAnimation 3s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Стили для кнопки Отмена */
+.btn-update-cancel-boy {
+    background: rgba(255, 255, 255, 0.8);
+    color: #64b5f6;
+    border-color: #bbdefb;
+    text-decoration: none
+}
+
+.btn-update-cancel-girl {
+    background: rgba(255, 255, 255, 0.8);
+    color: #ff80ab;
+    border-color: #ffcdd2;
+    text-decoration: none
+}
+
+/* Заголовок формы */
+.form-title-update {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Цвета заголовка в зависимости от пола */
+.form-title-update-boy {
+    color: #1e88e5;
+    animation: colorPulseBlue 6s ease-in-out infinite;
+}
+
+.form-title-update-girl {
+    color: #ec407a;
+    animation: colorPulsePink 6s ease-in-out infinite;
+}
+
+@keyframes colorPulseBlue {
+    0% {
+        color: #1e88e5;
+        text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
+    }
+    50% {
+        color: #64b5f6;
+        text-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
+    }
+    100% {
+        color: #1e88e5;
+        text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
+    }
+}
+
+@keyframes colorPulsePink {
+    0% {
+        color: #ec407a;
+        text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
+    }
+    50% {
+        color: #ff80ab;
+        text-shadow: 0 0 15px rgba(255, 128, 171, 0.5);
+    }
+    100% {
+        color: #ec407a;
+        text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
+    }
+}
+
+/* Эффекты при наведении */
+.btn-update:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn-update-boy:hover, .btn-update-girl:hover {
+    color: white !important;
+}
+
+.btn-update-cancel-boy:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #42a5f5;
+}
+
+.btn-update-cancel-girl:hover {
+    background: rgba(255, 255, 255, 0.9);
+    color: #f48fb1;
+}

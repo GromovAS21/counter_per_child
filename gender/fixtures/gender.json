@@ -1,0 +1,20 @@
+[
+  {
+    "model": "gender.gender",
+    "pk": 1,
+    "fields": {
+      "name": "Мальчик",
+      "total": 0,
+      "photo": "picture_220bcceb2fa94b70a1388d2479081b0c.png"
+    }
+  },
+  {
+    "model": "gender.gender",
+    "pk": 2,
+    "fields": {
+      "name": "Девочка",
+      "total": 0,
+      "photo": "picture_a7a02f986dc24ed2a969cc87cbbea3b7.png"
+    }
+  }
+]
