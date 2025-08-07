@@ -24,7 +24,6 @@ body {
 .header-title {
     margin-bottom: 3rem;
     text-align: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
     font-weight: 700;
     font-size: 5.0rem;
     animation: smoothColorFlow 16s ease infinite;
@@ -98,7 +97,6 @@ body {
     font-weight: 700;
     font-size: 2.5rem;
     color: #fff;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
     background-color: transparent !important;
     flex-shrink: 0;
@@ -138,7 +136,6 @@ body {
 
 .card-title {
     font-size: 2.5rem;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
     color: #333;
     margin-top: 1.5rem;
     background-color: rgba(255, 255, 255, 0.7);
@@ -197,8 +194,6 @@ footer {
     border-radius: 20px 20px 0 0;
     margin-top: 3rem;
 }
-
-/* Анимации для WebSocket */
 
 /* Стили для ведущей карточки */
 .leading-card {

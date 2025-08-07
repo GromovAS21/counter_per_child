@@ -42,7 +42,7 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             {
                 "type": "gender_update",
                 "data": {
-                    "id": child.id,
+                    "pk": child.pk,
                     "gender": child.gender,
                     "amount": child.amount,
                 }
@@ -72,7 +72,7 @@ class GenderFullUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             {
                 "type": "gender_update",
                 "data": {
-                    "id": child.id,
+                    "pk": child.pk,
                     "gender": child.gender,
                     "amount": child.amount,
                 }

@@ -1,13 +1,14 @@
 import secrets
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView
+from django.views.generic import CreateView, UpdateView, DetailView
 
 from config.settings import EMAIL_HOST_USER
 from gender.models import Gender, GenderChoices
-from user.forms import UserCreateForm
+from user.forms import UserCreateForm, UserForm
 from user.models import User
 
 
@@ -21,7 +22,6 @@ class UserRegisterView(CreateView):
         user = form.save()
         user.is_active = False
         user.token = secrets.token_hex(16)
-        print(user.token)
         user.save()
         host = self.request.get_host()
         url = "http://{}/users/email-confirm/{}/".format(host, user.token)
@@ -31,9 +31,31 @@ class UserRegisterView(CreateView):
             EMAIL_HOST_USER,
             [user.email],
         )
-        print(user.token)
         self.request.session["success_register"] = True
         return super().form_valid(form)
+
+
+class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
+    """Вывод информации о пользователе."""
+    model = User
+
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        user = self.get_object()
+        return self.request.user == user
+
+
+
+class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """Обновление информации о пользователе."""
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy("user:user_detail:")
+
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        user = self.get_object()
+        return self.request.user == user
 
 
 def success_register(request):
