@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_tags %}
+
+{% block content %}
+<div class="registration-container py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+
+                <h1 class="form-title text-center mb-4 gradient-title">
+                    <span class="title-text">Настройки пользователя</span>
+                </h1>
+
+                <div class="form-card-login p-4 p-md-4 mb-4">
+
+                    {% if form.errors %}
+                    <div class="validation-errors mb-4">
+                        {% for error in form.non_field_errors %}
+                        <div class="error-item text-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+                        </div>
+                        {% endfor %}
+                        {% for field in form %}
+                        {% if field.errors %}
+                        <div class="error-item text-danger">
+                            <i class="fas fa-exclamation-circle me-2"></i>{{ field.label }}: {{ field.errors.0 }}
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+
+                    <form method="post" enctype="multipart/form-data" class="form-container" autocomplete="off">
+                        {% csrf_token %}
+
+                        <!-- Аватар + Изменить -->
+                        <div class="d-flex flex-column align-items-center mb-1">
+                            <img id="avatar-preview"
+                                 {% if user.avatar %}
+                                 src="{{user.avatar|mymedia}}"
+                                 {% else %}
+                                 src="/media/default-avatar.png"
+                                 {% endif %}
+                                 class="rounded-circle"
+                                 alt="Аватар"
+                                 style="width: 140px; height: 140px; object-fit: cover; border: 3px solid #fff; box-shadow: 0
+                            2px 10px rgba(0, 0, 0, 0.1);">
+
+                            <input type="file"
+                                   name="avatar"
+                                   id="avatar-input"
+                                   accept="image/*"
+                                   style="display: none;"
+                                   onchange="previewAvatar(this)">
+
+                            <label for="avatar-input"
+                                   class="btn btn-sm btn-outline-secondary mt-2"
+                                   style="cursor: pointer;">
+                                <i class="fas fa-camera me-1"></i> Изменить
+                            </label>
+                        </div>
+
+                        <!-- Остальные поля -->
+                        {% for field in form %}
+                        {% if field.name != "avatar" %}
+                        <div class="form-group mb-0">
+                            <label for="{{ field.auto_id }}" class="form-label">{{ field.label }}</label>
+                            <input type="{{ field.field.widget.input_type }}"
+                                   name="{{ field.name }}"
+                                   id="{{ field.auto_id }}"
+                                   class="form-control form-control-login {% if field.errors %}is-invalid{% endif %}"
+                                   placeholder="{{ field.label }}"
+                                   value="{{ field.value|default_if_none:'' }}"
+                                   autocomplete="new-password">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+
+                        <!-- Кнопки -->
+                        <div class="button-container mt-1"
+                             style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 10px;">
+                            <button type="submit" class="btn btn-register" style="padding: 10px 30px; height: auto;">
+                                <i class="fas fa-sync-alt me-2"></i> Обновить
+                            </button>
+                            <span class="btn-back-wrapper" style="height: 100%;">
+                                <a class="btn-back" href="{% url 'user:user_detail' user.pk %}"
+                                   style="padding: 10px 30px; display: inline-flex; align-items: center; justify-content: center; height: 100%;">
+                                    <i class="fas fa-arrow-left me-2"></i>Назад
+                                </a>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JS: предварительный просмотр аватара -->
+<!--<script>-->
+<!--    function previewAvatar(input) {-->
+<!--        const preview = document.getElementById('avatar-preview');-->
+<!--        const file = input.files[0];-->
+<!--        if (file) {-->
+<!--            const reader = new FileReader();-->
+<!--            reader.onload = e => preview.src = e.target.result;-->
+<!--            reader.readAsDataURL(file);-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+{% endblock %}

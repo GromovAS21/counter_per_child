@@ -1,10 +1,72 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-</body>
-</html>
+{% block content %}
+<div class="registration-container">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10">
+                <!-- Заголовок формы -->
+                <h1 class="form-title text-center mb-4 gradient-title">
+                    <span class="title-text">Профиль пользователя</span>
+                </h1>
+
+                <!-- Карточка формы -->
+                <div class="form-card-login p-4 p-md-4 mb-4">
+                    <!-- Аватар пользователя -->
+                    <div class="text-center mb-4">
+                        {% if user.avatar %}
+                        <img src="{{ user.avatar }}" alt="Аватар" class="rounded-circle profile-avatar">
+                        {% else %}
+                        <img src="/media/default-avatar.png" alt="Аватар по умолчанию"
+                             class="rounded-circle profile-avatar">
+                        {% endif %}
+                    </div>
+
+                    <!-- Информация о пользователе -->
+                    <div class="user-info mb-4">
+                        <div class="info-item">
+                            <span class="info-label">Фамилия:</span>
+                            <span class="info-value">{{ user.second_name|default:"Не указано" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Имя:</span>
+                            <span class="info-value">{{ user.first_name|default:"Не указано" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Отчество:</span>
+                            <span class="info-value">{{ user.last_name|default:"Не указано" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Телефон:</span>
+                            <span class="info-value">{{ user.phone_number|default:"Не указано" }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">{{ user.email|default:"Не указано" }}</span>
+                        </div>
+                    </div>
+                    <div class="button-container user-detail">
+                        <div class="text-center">
+                                <span class="btn-back-wrapper">
+                                    <a href="{% url 'user:user_update' user.pk %}" class="btn-back"
+                                       style="text-decoration: none;">
+                                         <i class="fas fa-edit me-2"></i>Редактировать
+                                    </a>
+                                </span>
+                        </div>
+                        <div class="text-center">
+                                <span class="btn-back-wrapper">
+                                    <a href="{% url 'gender:home_page' %}" class="btn-back"
+                                       style="text-decoration: none;">
+                                         <i class="fas fa-arrow-left me-2"></i>Назад
+                                    </a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

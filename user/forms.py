@@ -7,6 +7,10 @@ from user.models import User
 class UserCreateForm(UserCreationForm):
     """Форма регистрации пользователя."""
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['email'].widget.input_type = 'text'
+
     class Meta:
         model = User
         fields = ("email", "password1", "password2")
@@ -35,4 +39,12 @@ class UserCreateForm(UserCreationForm):
         if password1 and len(password2) < 8:
             raise forms.ValidationError("Пароль должен быть не менее 8 символов.")
         return password2
+
+
+class UserForm(forms.ModelForm):
+    """Форма редактирования профиля пользователя."""
+
+    class Meta:
+        model = User
+        fields = ("avatar", "second_name", "first_name", "last_name", "phone_number", )
 

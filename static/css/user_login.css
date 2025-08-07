@@ -5,6 +5,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 20px 0;
+    position: relative;
+    z-index: 1;
 }
 
 /* Анимация для заголовка */
@@ -203,13 +205,21 @@
     margin: 0 auto;
     padding: 2.5rem;
 }
-
 /* Контейнер кнопок */
 .button-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.button-container.user-detail {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     margin-top: 1rem;
 }
 

@@ -13,6 +13,7 @@
     <link href="{% static 'css/gender_form.css' %}" rel="stylesheet">
     <link href="{% static 'css/header_main_btn.css' %}" rel="stylesheet">
     <link href="{% static 'css/user_login.css' %}" rel="stylesheet">
+    <link href="{% static 'css/user_form.css' %}" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 
@@ -30,45 +31,52 @@
     </button>
 
     <div class="menu-dropdown" id="menuDropdown">
-        {% if user.is_authenticated %}
-        <a href="/" class="menu-user-link">
-            <div class="menu-user">
-                {% if user.avatar %}
-                <img src="{{user.avatar| mymedia}}" alt="Аватар" class="user-avatar">
-                {% else %}
-                <img src="/media/default-avatar.png" alt="Аватар" class="user-avatar">
-                {% endif %}
-                <div class="user-name-container">
-                    <div class="user-name">{{ user.email }}</div>
-                </div>
+    {% if user.is_authenticated %}
+    <a href="{% url 'user:user_detail' user.pk %}" class="menu-user-link">
+        <div class="menu-user">
+            {% if user.avatar %}
+            <img src="{{user.avatar| mymedia}}" alt="Аватар" class="user-avatar">
+            {% else %}
+            <img src="/media/default-avatar.png" alt="Аватар" class="user-avatar">
+            {% endif %}
+            <div class="user-name-container">
+                <div class="user-name">{{ user.email }}</div>
             </div>
-        </a>
+        </div>
+    </a>
 
-        <a href="/" class="menu-item-link">
-            <div class="menu-item">
-                <i class="fas fa-sliders-h"></i>
-                <span>Настройка карточек</span>
-            </div>
-        </a>
+    <a href="{% url 'gender:home_page' %}" class="menu-item-link">
+        <div class="menu-item">
+            <i class="fas fa-images"></i>
+            <span>Показ карточек</span>
+        </div>
+    </a>
 
-        <form action="{% url 'user:logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit" class="menu-item-link">
-                <div class="menu-item logout">
-                    <i class="fas fa-sign-out-alt"></i>
-                    <span>Выход</span>
-                </div>
-            </button>
-        </form>
-        {% else %}
-        <a href="{% url 'user:login' %}" class="menu-item-link">
-            <div class="menu-item login">
-                <i class="fas fa-sign-in-alt"></i>
-                <span>Вход</span>
+    <a href="" class="menu-item-link">
+        <div class="menu-item">
+            <i class="fas fa-sliders-h"></i>
+            <span>Настройка карточек</span>
+        </div>
+    </a>
+
+    <form action="{% url 'user:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="menu-item-link">
+            <div class="menu-item logout">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Выход</span>
             </div>
-        </a>
-        {% endif %}
-    </div>
+        </button>
+    </form>
+    {% else %}
+    <a href="{% url 'user:login' %}" class="menu-item-link">
+        <div class="menu-item login">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Вход</span>
+        </div>
+    </a>
+    {% endif %}
+</div>
 </div>
 {% endif %}
 
