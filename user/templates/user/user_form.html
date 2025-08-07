@@ -71,8 +71,7 @@
                                    id="{{ field.auto_id }}"
                                    class="form-control form-control-login {% if field.errors %}is-invalid{% endif %}"
                                    placeholder="{{ field.label }}"
-                                   value="{{ field.value|default_if_none:'' }}"
-                                   autocomplete="new-password">
+                                   value="{{ field.value|default_if_none:'' }}">
                         </div>
                         {% endif %}
                         {% endfor %}
@@ -97,16 +96,15 @@
     </div>
 </div>
 
-<!-- JS: предварительный просмотр аватара -->
-<!--<script>-->
-<!--    function previewAvatar(input) {-->
-<!--        const preview = document.getElementById('avatar-preview');-->
-<!--        const file = input.files[0];-->
-<!--        if (file) {-->
-<!--            const reader = new FileReader();-->
-<!--            reader.onload = e => preview.src = e.target.result;-->
-<!--            reader.readAsDataURL(file);-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
+<script>
+    function previewAvatar(input) {
+        const preview = document.getElementById('avatar-preview');
+        const file = input.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = e => preview.src = e.target.result;
+            reader.readAsDataURL(file);
+        }
+    }
+</script>
 {% endblock %}

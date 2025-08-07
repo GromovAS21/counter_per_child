@@ -1,5 +1,6 @@
 import secrets
 
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.core.mail import send_mail
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy, reverse
@@ -34,16 +35,27 @@ class UserRegisterView(CreateView):
         return super().form_valid(form)
 
 
-class UserDetailView(DetailView):
+class UserDetailView(LoginRequiredMixin, UserPassesTestMixin, DetailView):
     """Вывод информации о пользователе."""
     model = User
 
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        user = self.get_object()
+        return self.request.user == user
 
-class UserUpdateView(UpdateView):
+
+
+class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Обновление информации о пользователе."""
     model = User
     form_class = UserForm
     success_url = reverse_lazy("gender:home_page")
+
+    def test_func(self):
+        """Проверяем, что пользователь является владельцем объекта."""
+        user = self.get_object()
+        return self.request.user == user
 
 
 def success_register(request):

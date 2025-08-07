@@ -57,6 +57,13 @@ input[type="number"] {
     width: 100%;
 }
 
+.form-group .form-control-login:focus {
+    background-color: #fff;
+    color: #000;
+    border-color: #000000;
+
+}
+
 /* Стили для поля ввода */
 .form-control-update {
     margin: 0 auto;
@@ -158,7 +165,6 @@ input[type="number"] {
 /* Контейнер для кнопок */
 .button-container-update {
     display: flex;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
     justify-content: center;
     gap: 15px;
     width: 100%;
@@ -223,7 +229,6 @@ input[type="number"] {
 
 /* Заголовок формы */
 .form-title-update {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
     margin-bottom: 2rem;
     font-size: 2.5rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -231,43 +236,21 @@ input[type="number"] {
 
 /* Цвета заголовка в зависимости от пола */
 .form-title-update-boy {
-    color: #1e88e5;
-    animation: colorPulseBlue 6s ease-in-out infinite;
+    background: linear-gradient(-45deg, #b3e6ff, #66c2ff, #3399ff, #0077cc, #0055aa
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTitle 10s ease infinite;
 }
 
 .form-title-update-girl {
-    color: #ec407a;
-    animation: colorPulsePink 6s ease-in-out infinite;
-}
-
-@keyframes colorPulseBlue {
-    0% {
-        color: #1e88e5;
-        text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
-    }
-    50% {
-        color: #64b5f6;
-        text-shadow: 0 0 15px rgba(100, 181, 246, 0.5);
-    }
-    100% {
-        color: #1e88e5;
-        text-shadow: 0 0 10px rgba(30, 136, 229, 0.3);
-    }
-}
-
-@keyframes colorPulsePink {
-    0% {
-        color: #ec407a;
-        text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
-    }
-    50% {
-        color: #ff80ab;
-        text-shadow: 0 0 15px rgba(255, 128, 171, 0.5);
-    }
-    100% {
-        color: #ec407a;
-        text-shadow: 0 0 10px rgba(236, 64, 122, 0.3);
-    }
+    background: linear-gradient(-45deg, #ffb3e6, #ff66c2, #ff3399, #cc0077, #aa0055
+    );
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientTitle 10s ease infinite;
 }
 
 /* Эффекты при наведении */

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load my_tags %}
 
 {% block content %}
 <div class="registration-container">
@@ -16,7 +17,7 @@
                     <!-- Аватар пользователя -->
                     <div class="text-center mb-4">
                         {% if user.avatar %}
-                        <img src="{{ user.avatar }}" alt="Аватар" class="rounded-circle profile-avatar">
+                        <img src="{{ user.avatar|mymedia }}" alt="Аватар" class="rounded-circle profile-avatar">
                         {% else %}
                         <img src="/media/default-avatar.png" alt="Аватар по умолчанию"
                              class="rounded-circle profile-avatar">
