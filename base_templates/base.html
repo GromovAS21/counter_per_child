@@ -51,11 +51,13 @@
             </div>
         </a>
 
-        <form action="{% url 'user:logout' %}" method="post" class="menu-item-link">
+        <form action="{% url 'user:logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit" class="menu-item logout">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Выход</span>
+            <button type="submit" class="menu-item-link">
+                <div class="menu-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Выход</span>
+                </div>
             </button>
         </form>
         {% else %}

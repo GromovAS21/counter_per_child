@@ -75,6 +75,14 @@
     background: rgba(255, 255, 255, 0.4);
 }
 
+.menu-item-link {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+}
+
 .menu-user-link, .menu-item-link {
     text-decoration: none;
     color: inherit;
@@ -148,7 +156,7 @@
 }
 
 .menu-item.logout {
-    color: #ff6b6b !important;
+    color: #ff6b6b;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
 }
 
