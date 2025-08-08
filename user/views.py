@@ -50,12 +50,14 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     """Обновление информации о пользователе."""
     model = User
     form_class = UserForm
-    success_url = reverse_lazy("user:user_detail")
 
     def test_func(self):
         """Проверяем, что пользователь является владельцем объекта."""
         user = self.get_object()
         return self.request.user == user
+
+    def get_success_url(self):
+        return reverse_lazy("user:user_detail", kwargs={"pk": self.request.user.pk})
 
 
 def success_register(request):
