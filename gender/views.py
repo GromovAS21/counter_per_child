@@ -34,7 +34,7 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         child = self.get_object()
         form.cleaned_data["amount"] = (form.cleaned_data["amount"] + child.amount)
         user_pk = self.request.user.pk
-        send_ws_message(user_pk, child)
+        send_ws_message(user_pk, child, form.cleaned_data["amount"])
         return super().form_valid(form)
 
     def test_func(self):
