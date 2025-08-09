@@ -12,7 +12,7 @@ def send_ws_message(user_pk, value):
             "data": {
                 "pk": value.pk,
                 "gender": value.gender,
-                "amount": value,
+                "amount": value.amount,
             }
         }
     )
