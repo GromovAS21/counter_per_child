@@ -5,15 +5,15 @@ from gender.models import Gender
 
 
 class GenderUpdateForm(ModelForm):
-    """Форма для ввода данных"""
-    amount = forms.IntegerField()
+    """Форма для ввода данных."""
+    amount = forms.IntegerField(min_value=1)
 
     class Meta:
         model = Gender
         fields = ("amount",)
 
     def clean_amount(self):
-        """Проверка на ввод данных"""
+        """Проверка на ввод данных."""
         amount = self.cleaned_data["amount"]
         if amount < 0:
             raise forms.ValidationError("Сумма не может быть меньше 0.")
