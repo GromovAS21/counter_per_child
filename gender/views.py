@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView
 
@@ -33,12 +32,11 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         child = self.get_object()
-        new_value = form.cleaned_data["amount"]
-        child.amount += new_value
-        child.save()
+        form.cleaned_data["amount"] = (form.cleaned_data["amount"] + child.amount)
+        child = form.save()
         user_pk = self.request.user.pk
         send_ws_message(user_pk, child)
-        return HttpResponseRedirect(self.get_success_url())
+        return super().form_valid(form)
 
     def test_func(self):
         """Проверяем, что пользователь является владельцем объекта."""
