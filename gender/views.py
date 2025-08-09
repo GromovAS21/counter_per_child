@@ -33,7 +33,7 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         child = self.get_object()
-        form.save()
+        print(form)
         new_value = form.cleaned_data["amount"]
         child.amount += new_value
         child.save()
