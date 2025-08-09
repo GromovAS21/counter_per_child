@@ -36,9 +36,10 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         new_value = form.cleaned_data["amount"]
         child.amount += new_value
         child.save()
+        user_pk = self.request.user.pk
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            "gender_updates",
+            f"gender_updates_{user_pk}",
             {
                 "type": "gender_update",
                 "data": {
@@ -66,9 +67,10 @@ class GenderFullUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def form_valid(self, form):
         child = form.save()
+        user_pk = self.request.user.pk
         channel_layer = get_channel_layer()
         async_to_sync(channel_layer.group_send)(
-            "gender_updates",
+            f"gender_updates_{user_pk}",
             {
                 "type": "gender_update",
                 "data": {
