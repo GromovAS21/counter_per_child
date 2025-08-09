@@ -166,4 +166,4 @@ cython_debug/
 # Игнорировать dump.rdb в папке redis/
 dump.rdb
 
-static/*
+staticfiles/*
