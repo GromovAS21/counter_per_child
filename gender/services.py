@@ -2,7 +2,7 @@ from asgiref.sync import async_to_sync
 from channels.layers import get_channel_layer
 
 
-def send_ws_message(user_pk, value):
+def send_ws_message(user_pk, value, amount):
     """Отправка сообщения в WebSocket."""
     channel_layer = get_channel_layer()
     async_to_sync(channel_layer.group_send)(
@@ -12,7 +12,7 @@ def send_ws_message(user_pk, value):
             "data": {
                 "pk": value.pk,
                 "gender": value.gender,
-                "amount": value.amount,
+                "amount": amount,
             }
         }
     )
