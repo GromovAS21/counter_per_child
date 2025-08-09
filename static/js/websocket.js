@@ -1,5 +1,5 @@
 const genderSocket = new WebSocket(
-    'ws://' + window.location.host + '/ws/gender-updates/'
+    'wss://' + window.location.host + '/ws/gender-updates/'
 );
 
 // Функция для обновления подсветки карточек

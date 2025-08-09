@@ -24,7 +24,7 @@ class UserRegisterView(CreateView):
         user.token = secrets.token_hex(16)
         user.save()
         host = self.request.get_host()
-        url = "http://{}/users/email-confirm/{}/".format(host, user.token)
+        url = "https://{}/users/email-confirm/{}/".format(host, user.token)
         send_mail(
             "Подтверждение почты в сервисе 'Кто же будет?'",
             "Перейдите по ссылке для завершения регистрации пользователя:\n{}".format(url),
