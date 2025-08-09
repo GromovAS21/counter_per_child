@@ -1,15 +1,15 @@
-from asgiref.sync import async_to_sync
-from channels.layers import get_channel_layer
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, UpdateView
 
 from gender.forms import GenderUpdateForm
 from gender.models import Gender, GenderChoices
+from gender.services import send_ws_message
 
 
 class GenderView(LoginRequiredMixin, ListView):
+    """Показ карточек пола."""
+
     model = Gender
 
     def get_context_data(self, **kwargs):
@@ -30,27 +30,12 @@ class GenderUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     success_url = reverse_lazy("gender:home_page")
     template_name = "gender/gender_update.html"
 
-
     def form_valid(self, form):
         child = self.get_object()
-        print(form)
-        new_value = form.cleaned_data["amount"]
-        child.amount += new_value
-        child.save()
+        form.cleaned_data["amount"] = (form.cleaned_data["amount"] + child.amount)
         user_pk = self.request.user.pk
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.group_send)(
-            f"gender_updates_{user_pk}",
-            {
-                "type": "gender_update",
-                "data": {
-                    "pk": child.pk,
-                    "gender": child.gender,
-                    "amount": child.amount,
-                }
-            }
-        )
-        return HttpResponseRedirect(self.get_success_url())
+        send_ws_message(user_pk, child)
+        return super().form_valid(form)
 
     def test_func(self):
         """Проверяем, что пользователь является владельцем объекта."""
@@ -69,18 +54,7 @@ class GenderFullUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         child = form.save()
         user_pk = self.request.user.pk
-        channel_layer = get_channel_layer()
-        async_to_sync(channel_layer.group_send)(
-            f"gender_updates_{user_pk}",
-            {
-                "type": "gender_update",
-                "data": {
-                    "pk": child.pk,
-                    "gender": child.gender,
-                    "amount": child.amount,
-                }
-            }
-        )
+        send_ws_message(user_pk, child)
         return super().form_valid(form)
 
     def test_func(self):
