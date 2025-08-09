@@ -30,7 +30,7 @@ services:
         condition: service_healthy
     volumes:
       - .:/app
-      - ./static_collected:/app/static_collected
+      - ./staticfiles:/app/staticfiles
       - ./media:/app/media
     env_file:
       - .env

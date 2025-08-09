@@ -24,14 +24,14 @@ function updateLeadingCard() {
 // Обработка сообщений WebSocket
 genderSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
-    const isBoy = data.name === "Мальчик";
+    const isBoy = data.gender === "Мальчик";
     const totalElementId = isBoy ? 'boyCardTotal' : 'girlCardTotal';
     const cardId = isBoy ? 'boyCard' : 'girlCard';
     const currentValue = parseInt(document.getElementById(totalElementId).textContent) || 0;
-    const isIncrease = data.total > currentValue;
+    const isIncrease = data.amount > currentValue;
 
     // Анимация изменения числа
-    animateNumberChange(totalElementId, data.total, isIncrease, function() {
+    animateNumberChange(totalElementId, data.amount, isIncrease, function() {
         // Обновляем лидирующую карточку
         updateLeadingCard();
 
