@@ -1,7 +1,8 @@
+const isSecure = window.location.protocol === 'https:';
+const wsProtocol = isSecure ? 'wss://' : 'ws://';
 const genderSocket = new WebSocket(
-    'wss://' + window.location.host + '/ws/gender-updates/'
+    wsProtocol + window.location.host + '/ws/gender-updates/'
 );
-
 // Функция для обновления подсветки карточек
 function updateLeadingCard() {
     const girlTotal = parseInt(document.getElementById('girlCardTotal').textContent) || 0;
