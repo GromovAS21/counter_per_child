@@ -6,12 +6,12 @@ class GenderUpdatesConsumer(AsyncWebsocketConsumer):
     """Консьюмер для обновления данных о полах пользователей."""
     async def connect(self):
         """Подключение клиента к каналу."""
-        user_id = self.scope['user'].id
+        user_id = self.scope['user'].pk
         await self.accept()
         await self.channel_layer.group_add(f"gender_updates_{user_id}", self.channel_name)
 
     async def disconnect(self, close_code):
-        user_id = self.scope['user'].id
+        user_id = self.scope['user'].pk
         await self.channel_layer.group_discard(f"gender_updates_{user_id}", self.channel_name)
 
     async def receive(self, text_data):
