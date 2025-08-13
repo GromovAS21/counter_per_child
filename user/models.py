@@ -1,12 +1,20 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+import uuid
 
 
 class User(AbstractUser):
     """Модель Пользователя"""
-
+    id = None
     username = None
+    uuid = models.UUIDField(
+        default=uuid.uuid4,
+        primary_key=True,
+        editable=False,
+        unique=True,
+        verbose_name="Уникальный идентификатор",
+    )
     email = models.EmailField(
         unique=True,
         verbose_name='Email',
