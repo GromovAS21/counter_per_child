@@ -27,7 +27,7 @@
                                 </div>
                                 <i class="fas fa-pen edit-icon {% if object.gender == 'Мальчик' %}edit-icon-boy{% else %}edit-icon-girl{% endif %}"
                                    title="Редактировать сумму"
-                                   onclick="window.location.href='{% url 'gender:update_full_page' object.id %}'"></i>
+                                   onclick="window.location.href='{% url 'gender:update_full_page' object.pk %}'"></i>
                             </div>
                             {% if form.total.errors %}
                             <div class="text-danger">

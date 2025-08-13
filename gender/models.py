@@ -1,6 +1,7 @@
 from django.db import models
 
 from user.models import User
+import uuid
 
 
 class GenderChoices(models.TextChoices):
@@ -11,6 +12,14 @@ class GenderChoices(models.TextChoices):
 
 class Gender(models.Model):
     """Модель для главной страницы"""
+    id = None
+    uuid = models.UUIDField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        unique=True,
+        verbose_name="Уникальный идентификатор",
+    )
     gender = models.CharField(
         choices=GenderChoices,
         max_length=20,

@@ -43,7 +43,7 @@
                                 Заменить
                             </button>
                             <a class="btn-update {% if object.gender == 'Мальчик' %}btn-update-cancel-boy{% else %}btn-update-cancel-girl{% endif %}"
-                               href="{% url 'gender:update_page' object.id %}"
+                               href="{% url 'gender:update_page' object.pk %}"
                                role="button">
                                 Назад
                             </a>
